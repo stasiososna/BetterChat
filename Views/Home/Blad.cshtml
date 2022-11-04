@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Blad";
+}
+
+<header>
+    <div class="mynav">
+        <div class="mmcontainer">
+            <div class="myimg">
+                <img src="~/images/koya.svg" alt="" height="50" width="50" />
+            </div>
+            <div class="baner">
+                <h1>Welcome to better Chat</h1>
+            </div>
+            <div class="leftf">
+                @Html.ActionLink("LogIn!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+
+            </div>
+        </div>
+    </div>
+</header>
+<div class="mycontainer">
+
+<h2>Blad</h2>
+<p>Niepoprawna nazwa użytkownika bądź hasło</p>
+    </div>

@@ -1,0 +1,227 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #A3D9FF;
+}
+
+.mycontainer {
+    width:100vw;
+
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+header {
+    background-color: #2C2F33;
+
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.workspace {
+    background-color: #2C2F33;
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.buttonn {
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    min-width: 140px;
+    outline: 0;
+    padding: 0 17px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+
+    .buttonn:focus {
+        color: #171e29;
+    }
+
+    .buttonn:hover {
+        border-color: #06f;
+        color: #06f;
+        fill: #06f;
+    }
+
+    .buttonn:active {
+        border-color: #06f;
+        color: #06f;
+        fill: #06f;
+    }
+
+@media (min-width: 768px) {
+    .buttonn {
+        min-width: 170px;
+    }
+}
+
+input {
+    margin-right: auto;
+    margin-left: auto;
+}
+.leftmenu {
+    background-color: #23272A;
+    width:5vw;
+
+    height:100vh;
+}
+.middlemenu {
+
+    background-color: #222222;
+    min-width: 80vw;
+    color: #ADD8E6;
+    height:100vh;
+}
+.rightmenu {
+
+    background-color: #23272A;
+    width: 15vw;
+    color: #ADD8E6;
+    height:100vh;
+
+}
+.mmcontainer {
+display:flex;
+
+}
+.mycontainer2 {
+margin-top:-50px;
+display:flex;
+
+}
+
+
+.baner {
+    margin-left: 40vw;
+    margin-right: 30vw;
+    color: #ADD8E6;
+
+
+}
+
+.mynav {
+    background-color: #2C2F33;
+    top:0;
+    margin-top:-50px;
+}
+
+.leftf {
+
+    color: #ADD8E6;
+    float:right;
+
+}
+
+.myform {
+    background-color: #23272A;
+    width: 30vw;
+    height: 35vh;
+    margin-top: 5vh;
+    margin-left: 15vw;
+    border-radius: 25px;
+    float: left;
+    color: #ADD8E6;
+    padding:15px;
+}
+
+.obj2 {
+    background-color: #0075F2;
+    width: 30vw;
+    height: 35vh;
+    margin-top: 5vh;
+    border-radius: 25px;
+    -moz-border-radius-bottomright: 0;
+    float: left;
+    color: #ADD8E6;
+    padding-left: 15px;
+    padding-top: 5px;
+    font-family: Verdana;
+    font-size: 2vw;
+    justify-content: center;
+}
+
+.obj3 {
+    background-color: #13505B;
+    width: 30vw;
+    height: 35vh;
+    margin-top: 5vh;
+    border-radius: 25px;
+    -moz-border-radius-bottomright: 0;
+    float: left;
+    color: #ADD8E6;
+    padding-left: 15px;
+    padding-top: 5px;
+    font-family: Verdana;
+    font-size: 2vw;
+    justify-content: center;
+}
+
+.triangle {
+    clear: both;
+    margin-left: 60vw;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10vh 2.5vw 0;
+    border-color: transparent #0075F2 transparent transparent;
+}
+.triangle2 {
+    clear: both;
+    margin-left: 60vw;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10vh 2.5vw 0;
+    border-color: transparent #13505B transparent transparent;
+}
+.elipsa {
+height:3vh;
+width:3vw;
+border-radius:50%;
+border:2px solid black;
+margin-left:1vw;
+margin-top:2vh;
+
+
+}
+
+
+.myicon {
+    clear: both;
+    margin-left: 67vw;
+    width: 5vw;
+    height: 5vh;
+}
