@@ -1,14 +1,37 @@
 ﻿@model MMIv3.Models.User
 <div class="mycontainer2">
-
-
-    <div class="leftmenu"><div class="elipsa" style="background-image:src(" .. /~images/" + )"></div></div>
-    <div class="middlemenu">
-
+    <div class="leftmenu">
+        <div class="elipsa" style="background-image:src()"></div>
     </div>
-    <div class="rightmenu">
+    <div class="middlemenu">
+        <img src="~/images/koya.svg" style="float: left;"/>
+        <input type="text" placeholder="Search tags in profile" style="float: left;"/>
+        <div class="profile_break" style="width: 100%; height: 40px; background-color: #4B4E6D; clear: both;"></div>
+        <div class="elipsa" style="width: 15vw; height: 28vh;">
+            <img src="~/images/channels4_profile.jpg" style="width: 100%; height: 100%; border-radius: 50%;"/>
+        </div>
+        <div class="aboutme">
 
+        </div>
+        <div class="posts">
 
-
+        </div>
+    </div>
+    <div class="rightmenu" style="padding: 20px 10px;">
+        <div class="friends_list">
+            <p style="float: left;">Friends list:</p>
+            <a style="float: right; color: #90EE90; ">Add new +</a>
+            <br style="clear: both;"/>
+        </div>
+        <div class="break" style="width: 80%; height: 5px; background-color: #233D4D; margin: 20px auto; border-radius: 10px;"></div>
+        <div class="friends_requests" style="height: 50%">
+            <p>Requests:</p>
+        </div>
+        <div class="break" style="width: 80%; height: 5px; background-color: #233D4D; margin: 20px auto; border-radius: 10px;"></div>
+        <div class="user_profile">
+            <a style="color: #ADD8E6">Edit profile</a><br />
+            <a style="color: #ADD8E6">Settings</a><br />
+            <a style="color: #E99595;">Log out</a>
+        </div>
     </div>
 </div>
