@@ -2,10 +2,6 @@
     background-color: #A3D9FF;
 }
 
-.mycontainer {
-    width:100vw;
-}
-
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -32,23 +28,15 @@ input, select, textarea {
 
 .buttonn {
     align-items: center;
-    background-color: #fff;
-    border: 2px solid #000;
-    box-sizing: border-box;
-    color: #000;
+    background-color: #0075F2;
+    color: #fff;
     cursor: pointer;
     display: inline-flex;
-    fill: #000;
-    font-family: Inter,sans-serif;
     font-size: 16px;
-    font-weight: 600;
     height: 48px;
     justify-content: center;
-    letter-spacing: -.8px;
-    line-height: 24px;
+    margin-top: 10px;
     min-width: 140px;
-    outline: 0;
-    padding: 0 17px;
     text-align: center;
     text-decoration: none;
     transition: all .3s;
@@ -57,20 +45,19 @@ input, select, textarea {
     touch-action: manipulation;
 }
 
-
     .buttonn:focus {
         color: #171e29;
     }
 
     .buttonn:hover {
-        border-color: #06f;
-        color: #06f;
+        border-color: #171e29;
+        color: #ccc;
         fill: #06f;
     }
 
     .buttonn:active {
-        border-color: #06f;
-        color: #06f;
+        border-color: #171e29;
+        color: #aaa;
         fill: #06f;
     }
 
@@ -85,84 +72,62 @@ input {
     margin-left: auto;
 }
 
-.leftmenu {
-    background-color: #23272A;
-    width:5vw;
-    height:100vh;
-}
-
-.mmcontainer {
-display:flex;
-
-}
-
-.mycontainer2 {
-display:flex;
-
-}
-
-.baner {
-    margin-left: 40vw;
-    margin-right: 30vw;
-    color: #ADD8E6;
-}
-
-.mynav {
-    background-color: #2C2F33;
-    top:0;
-    margin-top:-50px;
-}
-
 .leftf {
     color: #ADD8E6;
-    float:right;
+    float: right;
 }
 
-.myform {
+.elipsa {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin-left: 1vw;
+    margin-top: 2vh;
+}
+
+.col-form-label {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+
+
+.register_registerform, .login_loginform {
     background-color: #23272A;
     width: 30vw;
-    height: 35vh;
     margin-top: 5vh;
     margin-left: 15vw;
     border-radius: 25px;
     float: left;
     color: #ADD8E6;
-    padding:15px;
+    padding: 15px;
 }
 
-.obj2 {
+.register_registerform {
+    height: 45vh;
+    text-align: center;
+}
+
+.register_desc, .login_desc {
     background-color: #0075F2;
     width: 30vw;
-    height: 35vh;
     margin-top: 5vh;
     border-radius: 25px;
     -moz-border-radius-bottomright: 0;
     float: left;
     color: #ADD8E6;
-    padding-left: 15px;
-    padding-top: 5px;
+    padding: 1%;
     font-family: Verdana;
     font-size: 2vw;
     justify-content: center;
 }
 
-.obj3 {
-    background-color: #13505B;
-    width: 30vw;
-    height: 35vh;
-    margin-top: 5vh;
-    border-radius: 25px;
-    -moz-border-radius-bottomright: 0;
-    float: left;
-    color: #ADD8E6;
-    padding-left: 15px;
-    padding-top: 5px;
-    font-family: Verdana;
-    font-size: 2vw;
-    justify-content: center;
+.register_desc {
+    height: 45vh;
 }
 
-.triangle {
+.register_triangle {
     clear: both;
     margin-left: 60vw;
     display: inline-block;
@@ -173,7 +138,38 @@ display:flex;
     border-color: transparent #0075F2 transparent transparent;
 }
 
-.triangle2 {
+
+
+.login_navcontainer {
+    background-color: #2C2F33;
+    height: 10vh;
+}
+
+.login_headercontainer {
+    display: flex;
+    
+}
+
+.login_baner {
+    margin: auto;
+    color: #ADD8E6;
+    align-items: center;
+}
+
+.login_page {
+    width: 100vw;
+}
+
+.login_loginform {
+    height: 40vh;
+    text-align: center;
+}
+
+.login_desc {
+    height: 40vh;
+}
+
+.login_triangle {
     clear: both;
     margin-left: 60vw;
     display: inline-block;
@@ -181,23 +177,29 @@ display:flex;
     height: 0;
     border-style: solid;
     border-width: 0 10vh 2.5vw 0;
-    border-color: transparent #13505B transparent transparent;
+    border-color: transparent #0075F2 transparent transparent;
 }
 
-.elipsa {
-    height:3vh;
-    width:3vw;
-    border-radius:50%;
-    border:2px solid black;
-    margin-left:1vw;
-    margin-top:2vh;
-}
-
-.myicon {
+.login_myicon {
     clear: both;
-    margin-left: 67vw;
+    margin-left: 60vw;
+}
+
+.login_descicon {
+    width: 20vw;
+    height: 20vh;
+}
+
+
+
+.profile_page_mycontainer {
+    display: flex;
+}
+
+.profile_page_leftmenu {
+    background-color: #23272A;
     width: 5vw;
-    height: 5vh;
+    height: 100vh;
 }
 
 .profile_page_middlemenu {
@@ -207,20 +209,31 @@ display:flex;
     height: 100vh;
 }
 
-.profile_aboutme {
-    float: left;
-    width: 200px;
-    height: 200px;
+.profile_info {
+    height: 38vh;
+    margin-top: 10px;
+}
+
+.profileicon_elipsa {
+    width: 15vw;
+    height: 28vh;
+    margin: auto;
+}
+
+.profile_aboutme, .profile_posts {
+    width: 35vw;
+    height: 40vh;
     border: 1px solid white;
     border-radius: 15px;
+    margin: 10px 20px 0px 20px;
+    text-align: center;
+}
+.profile_aboutme {
+    float: left;
 }
 
 .profile_posts {
     float: right;
-    width: 200px;
-    height: 200px;
-    border: 1px solid white;
-    border-radius: 15px;
 }
 
 .profile_page_rightmenu {
@@ -228,6 +241,14 @@ display:flex;
     width: 15vw;
     color: #ADD8E6;
     height: 100vh;
+}
+
+.break_panel {
+    width: 80%;
+    height: 5px;
+    background-color: #233D4D;
+    margin: 20px auto;
+    border-radius: 10px;
 }
 
 .page_link {
