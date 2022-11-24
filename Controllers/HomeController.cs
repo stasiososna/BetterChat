@@ -17,7 +17,7 @@ namespace MMIv3.Controllers
             var user = new User();
             return View(user);
         }
-        
+
         public ActionResult Register()
         {
             var userex = new UserEx();
@@ -30,7 +30,7 @@ namespace MMIv3.Controllers
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "select id from User1 where username ='" + user.username + "' and password='" + user.password+"'";
+            cmd.CommandText = "select id from User1 where username ='" + user.username + "' and password='" + user.password + "'";
             cmd.Connection = conn;
 
 
@@ -47,13 +47,13 @@ namespace MMIv3.Controllers
                 conn.Close();
                 return View(user);
 
-                
+
             }
             else
             {
                 conn.Close();
                 return View("Blad");
-                
+
             }
         }
         public ActionResult SignIn(UserEx userex)
@@ -70,7 +70,7 @@ namespace MMIv3.Controllers
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            
+
 
 
 
