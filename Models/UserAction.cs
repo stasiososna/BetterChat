@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Antlr.Runtime.Tree;
 
 namespace MMIv3.Models
 {
@@ -15,9 +17,12 @@ namespace MMIv3.Models
         public string url { get; set; }
         public List<Friend> Friendlist;
         public List<Friend> WaitingReqlist;
+        public List<Friend> lastthree;
+        public int[] idoffriends = new int[3];
         public string sendreqname { get; set; }
         public int accepted { get; set; }
         public int denied { get; set; }
+        public SqlConnection conn;
 
 
 
@@ -28,15 +33,31 @@ namespace MMIv3.Models
             username = user.username;
             password = user.password;
             id = id2;
+            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
 
         }
 
-        public UserAction() { }
+        public UserAction() {
+            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
+        }
+        public void getlastthree() { 
+            lastthree = new List<Friend>();
+            getmessages();
+            for (int i = 0; i < 3; i++)
+            {
+                lastthree.Add(new Friend(idoffriends[i], conn));
+            }
+            
+        
+        
+        
+        
+        }
         public void GetFriends()
         {
             Friendlist = new List<Friend>();
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
-            conn.Open();
+            
+            
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandType = System.Data.CommandType.Text;
@@ -97,9 +118,83 @@ namespace MMIv3.Models
 
 
         }
-        public void SetProfPic()
+        public void getmessages() {
+
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select user1_id, user2_id from messagesb where  (user1_id = '" + id + "' or user2_id = '" + id + "') order by senddate";
+            SqlDataAdapter sda= new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                int id1 = Int32.Parse(row[0].ToString());
+                int id2 = Int32.Parse(row[1].ToString());
+
+
+
+                if (id1 == id)
+                {
+                    if (idoffriends[0] != 0)
+                    {
+                        if (idoffriends[1] != 0)
+                        {
+                            if (idoffriends[2] != 0)
+                            {
+                            }
+                            else
+                                idoffriends[2] = id2;
+
+                        }
+                        else
+                            idoffriends[1] = id2;
+                    }
+                    else
+                        idoffriends[0] = id2;
+
+
+                }
+                if (id2 == id)
+                {
+                    if (idoffriends[0] != 0)
+                    {
+                        if (idoffriends[1] != 0)
+                        {
+                            if (idoffriends[2] != 0)
+                            {
+                            }
+                            else
+                                idoffriends[2] = id1;
+
+                        }
+                        else
+                            idoffriends[1] = id1;
+                    }
+                    else
+                        idoffriends[0] = id1;
+
+
+                }
+
+
+            }
+
+                for (int j = 0; j < 2; j++)
+                {
+                    if (idoffriends[j] == 0)
+                        idoffriends[j] = 1;
+                }
+
+
+
+
+            
+        }
+            public void SetProfPic()
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+            
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -119,7 +214,7 @@ namespace MMIv3.Models
         public void GetRequests()
         {
             WaitingReqlist = new List<Friend>();
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+            
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -184,7 +279,7 @@ namespace MMIv3.Models
         public void SetUser(int id2)
         {
             id = id2;
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+            
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -197,8 +292,10 @@ namespace MMIv3.Models
             {
                 password = row[1].ToString();
                 username = row[0].ToString();
+                
 
             }
+            conn.Close();
 
 
         }

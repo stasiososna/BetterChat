@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Increment.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserAction.cs" />
     <Compile Include="Models\UserEx.cs" />

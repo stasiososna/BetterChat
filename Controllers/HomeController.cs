@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MMIv3.Models;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace MMIv3.Controllers
 {
@@ -12,7 +13,7 @@ namespace MMIv3.Controllers
     {
         public int result;
         public int islogged = 0;
-        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
         public ActionResult Index()
         {
             var user = new User();
@@ -30,6 +31,7 @@ namespace MMIv3.Controllers
         public ActionResult LogIn(UserAction userAction)
         {
             userAction.SetUser(userAction.id);
+            conn.Close();
             userAction.GetFriends();
             userAction.GetRequests();
             userAction.SetProfPic();
@@ -77,9 +79,11 @@ namespace MMIv3.Controllers
 
 
             }
+            conn.Close();
             userAction.GetFriends();
             userAction.GetRequests();
             userAction.SetProfPic();
+            userAction.getlastthree();
             return View(userAction);
         }
         public ActionResult LogInto(User user)
@@ -89,8 +93,10 @@ namespace MMIv3.Controllers
 
             result = getid(user.username, user.password, conn);
             UserAction userAction = new UserAction(user, 0, result);
+            conn.Close();
             userAction.GetFriends();
             userAction.GetRequests();
+            userAction.getlastthree();
             userAction.SetProfPic();
 
             if (result > 0)
@@ -116,11 +122,14 @@ namespace MMIv3.Controllers
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "select id from User1 where username ='" + username + "' and password='" + password + "'";
             cmd.Connection = con;
-            try
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
             {
-                result = (Int32)cmd.ExecuteScalar();
+                result = Int32.Parse(row[0].ToString());
+            
             }
-            catch { }
             con.Close();
             return result;
         }

@@ -29,7 +29,22 @@
 <div class="mycontainer2">
 
 
-    <div class="leftmenu"><div class="elipsa" style="background-image:src(" /images/" + @Model.url )"></div></div>
+    <div class="leftmenu">
+        @foreach (MMIv3.Models.Friend friend2 in Model.lastthree)
+        {
+
+            <div class="elipsa" style="background-image:Url(@friend2.avatar )"></div>
+            }
+
+
+
+
+
+
+
+
+
+        </div>
     <div class="middlemenu" id=" midmenu">
         <div class="sendreq">
             <form action="/Home/LogIn" role="form" method="post">
