@@ -243,6 +243,17 @@ input {
         height: 0;
     }
 
+.Me {
+background-color:red;
+
+
+
+}
+.You {
+
+background-color:blue;
+
+}
 .slider {
     position: absolute;
     cursor: pointer;

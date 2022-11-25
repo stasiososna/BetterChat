@@ -30,11 +30,29 @@
 
 
     <div class="leftmenu">
-        @foreach (MMIv3.Models.Friend friend2 in Model.lastthree)
+        @if (Model.lastthree.Count > 0)
         {
+            foreach (MMIv3.Models.Friend friend2 in Model.lastthree)
+            {
+                <div class="messageuser">
 
-            <div class="elipsa" style="background-image:Url(@friend2.avatar )"></div>
+
+                    <form action="/Home/LogIn" role="form" method="post">
+                        <label for="action"></label><input type="hidden" id="action" name="action" value="4" />
+                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                        <label for="focusedfriendid"></label><input type="hidden" value="@friend2.Id" name="focusedfriendid" id="focusedfriendid" />
+                         <button type="submit" class="elipsa" style="background-image:Url(@friend2.avatar )"></button> 
+                    </form>
+                    <form action="/Home/LogIn" role="form" method="post">
+                        <label for="action"></label><input type="hidden" id="action" name="action" value="5" />
+                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                        <label for="focusedfriendid"></label><input type="hidden" value="@friend2.Id" name="focusedfriendid" id="focusedfriendid" />
+                        <button type="submit" class="name" value="@friend2.Name"></button>
+                    </form>
+                </div>
             }
+        }
+        <div class="elipsa"></div>
 
 
 
@@ -44,8 +62,10 @@
 
 
 
-        </div>
+    </div>
     <div class="middlemenu" id=" midmenu">
+        @if (Model.action != 5)
+        {
         <div class="sendreq">
             <form action="/Home/LogIn" role="form" method="post">
                 <label class="col-form-label" for="sendreqname">Add Friend:</label><input id="sendreqname" name="sendreqname" type="text" class="form-control" />
@@ -98,6 +118,36 @@
 
 
         </div>
+        }
+        else if (Model.action==5 || Model.action ==6)
+        {
+        <div class="namee"><p>@Model.focusedfriend.Name</p></div>
+        <div class="messeges">
+            @foreach (MMIv3.Models.Message message in Model.lastfive)
+            {
+                <div class="@message.wsend">
+                    <p>@message.content</p>
+                </div>
+            }
+                <form action="/Home/LogIn" method="post" role="form">
+                    <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="6" />
+                    <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                    <label for="sendmessage"></label> <input type="text" name="sendmessage" id="sendmessage" />
+                    <label for="focusedfriendid"></label> <input type="hidden" id="focusedfriendid" name="focusedfriendid" value="@Model.focusedfriendid" />
+                    <input type="submit" value="Send" />
+                </form>
+            
+
+        </div>
+        
+        
+        
+        }
+
+
+
+
+
     </div>
     <div class="rightmenu">
         <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">

@@ -8,9 +8,13 @@ namespace MMIv3.Models
 {
     public class Message
     {
-        public int id { get; set; }
-        public int friendid { get; set; }
+
         public string content { get; set; }
-        public DateTime sendtime { get; set; }
+        public string wsend { get; set; }
+        public Message(string a) { 
+        content = a;
+        
+        
+        }
     }
 }

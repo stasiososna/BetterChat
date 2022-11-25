@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Antlr.Runtime.Tree;
+using System.Web.Services.Protocols;
 
 namespace MMIv3.Models
 {
@@ -23,7 +24,10 @@ namespace MMIv3.Models
         public int accepted { get; set; }
         public int denied { get; set; }
         public SqlConnection conn;
-
+        public int focusedfriendid { get; set; }
+        public Friend focusedfriend { get; set; }
+        public List<Message> lastfive;
+        public string sendmessage { get; set; }
 
 
         public UserAction(User user, int action2, int id2)
@@ -52,6 +56,43 @@ namespace MMIv3.Models
         
         
         
+        }
+        public void setlastmessages() {
+            lastfive = new List<Message>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select top 5 content,wsend from messagesb where user1_id in (" + id + "," + focusedfriendid + ") and  user2_id in (" + id + "," + focusedfriendid + ") order by senddate ";
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row[0] != null)
+                {
+                    if (Int32.Parse(row[1].ToString()) != id)
+                    {
+                        string content = row[0].ToString();
+                        lastfive.Add(new Message(content) { wsend = "Me" });
+                    }
+                    else {
+                        string content = row[0].ToString();
+                        lastfive.Add(new Message(content) { wsend = "You" });
+
+                    }
+                }
+                else
+                {
+                    lastfive.Add(new Message("To początek konwersacji! Pamiętaj aby być miły!"));
+                }
+            
+            }
+            lastfive.Reverse();
+
+
+
+
+
         }
         public void GetFriends()
         {
@@ -118,6 +159,27 @@ namespace MMIv3.Models
 
 
         }
+        public void setfriend() {
+            focusedfriend = new Friend();
+            
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.CommandText = "select username, avatar from User1 where id = '" + focusedfriendid + "'";
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                focusedfriend.Name = row[0].ToString();
+                focusedfriend.avatar = row[1].ToString();
+                focusedfriend.Id = focusedfriendid;
+            
+            }
+        
+        
+        
+        }
         public void getmessages() {
 
 
@@ -181,11 +243,7 @@ namespace MMIv3.Models
 
             }
 
-                for (int j = 0; j < 2; j++)
-                {
-                    if (idoffriends[j] == 0)
-                        idoffriends[j] = 1;
-                }
+
 
 
 

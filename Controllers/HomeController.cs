@@ -79,6 +79,31 @@ namespace MMIv3.Controllers
 
 
             }
+            if (userAction.action == 4)
+            {
+                userAction.setfriend();
+            
+            }
+            if (userAction.action == 5 || userAction.action==6)
+            {
+                conn.Open();
+                userAction.setfriend();
+                if (userAction.action == 6)
+                {
+                    Increment inc = new Increment();
+                    int result = inc.oblicz("messagesb");
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "insert into messagesb(id,user1_id,user2_id,content,senddate,wsend) " +
+                        "values ('" + result + "','" + userAction.id + "','" + userAction.focusedfriendid + "','" + userAction.sendmessage + "',GETDATE(),'"+userAction.id+"') ";
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                userAction.setlastmessages();
+            
+            
+            }
             conn.Close();
             userAction.GetFriends();
             userAction.GetRequests();
