@@ -1,7 +1,4 @@
-﻿/* OBJAŚNIENIE CSS */
-/* RZECZY KTÓRE ROBIĄ RZECZY W KILKU PLIKACH LUB NIE WIEM CO ROBIĄ */
-
-body {
+﻿body {
     background-color: #A3D9FF;
 }
 
@@ -81,8 +78,8 @@ input {
 }
 
 .baner_img {
-    width: 11vw;
-    height: 11vh;
+    width: 10vw;
+    height: 10vh;
     float: left;
 }
 
@@ -101,7 +98,7 @@ input {
 }
 
 .welcome_text {
-    font-size: 3.5vw;
+    font-size: 48px;
 }
 
 .material-symbols-outlined {
@@ -109,8 +106,6 @@ input {
 }
 
 
-
-/* PLIK REGISTER.CSHTML */
 
 .register_registerform, .login_loginform {
     background-color: #23272A;
@@ -159,16 +154,17 @@ input {
 
 
 
-/* PLIK INDEX.CSHTML */
-
 .login_navcontainer {
     background-color: #2C2F33;
-    height: 11vh;
+    height: 10vh;
+}
+
+.login_headercontainer {
 }
 
 .login_baner {
     float: right;
-    margin-right: 32%;
+    margin-right: 37%;
     height: 10vh;
     color: #ADD8E6;
 }
@@ -208,8 +204,6 @@ input {
 }
 
 
-
-/* PLIK LOGIN.CSHTML */
 
 .profile_page_mycontainer {
     display: flex;
@@ -353,39 +347,4 @@ input {
 
 .div_button {
     height: 30px;
-}
-
-
-
-/* USTAWIENIA DLA MNIEJSZYCH EKRANÓW */
-
-@media screen and (min-width: 800px) and  (max-width: 1366px) and (min-height: 500px) and (max-height: 768px) {
-    .register_registerform {
-        height: 63vh;
-    }
-
-    .register_desc {
-        height: 63vh;
-    }
-
-    .register_desc p, .login_desc p {
-        font-size: 2.2vw;
-    }
-    
-    .login_navcontainer {
-        height: 15vh;
-    }
-
-    .baner_img {
-        width: 15vw;
-        height: 15vh;
-    }
-
-    .login_baner {
-        margin-right: 31%;
-    }
-
-    .login_loginform, .login_desc {
-        height: 52vh;
-    }
 }
