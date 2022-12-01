@@ -1,9 +1,15 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\Controllers",
     "\\Models"
   ],
   "SelectedNode": "\\Controllers\\HomeController.cs",
+=======
+    ""
+  ],
+  "SelectedNode": "\\MMIv3.sln",
+>>>>>>> e9cfd33e13ca1e273fe1db88633bab641c6ada2f
   "PreviewInSolutionExplorer": false
 }
