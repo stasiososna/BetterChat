@@ -91,8 +91,7 @@ input {
     width: 50px;
     border-radius: 50%;
     border: 2px solid black;
-    margin-left: 1vw;
-    margin-top: 2vh;
+    margin: auto;
 }
 
 .col-form-label {
@@ -221,10 +220,14 @@ input {
     height: 100vh;
 }
 
+.leftmenu_elipsas {
+    margin-top: 15px;
+}
+
 .profile_page_middlemenu {
     background-color: #222222;
-    min-width: 80vw;
     color: #ADD8E6;
+    width: 77vw;
     height: 100vh;
 }
 
@@ -324,16 +327,65 @@ input {
 
 .profile_page_rightmenu {
     background-color: #23272A;
-    width: 15vw;
+    width: 18vw;
     color: #ADD8E6;
     height: 100vh;
+    position: fixed;
+    right: 0;
+    padding: 20px 10px;
+}
+
+.profile_friends_list {
+    height: 43vh;
+}
+
+.profile_sendreq {
+    height: 20vh;
+    text-align: center;
+    display: none;
+}
+
+.send_request_button {
+    margin-top: 10px;
+    background-color: #0075F2;
+    border: none;
+    border-radius: 15px;
+    width: 50%;
+    height: 30px;
+}
+
+.profile_friends_requests {
+    height: 30vh;
+}
+
+.friend_request {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.request_user_name p {
+    margin-top: 5px;
+}
+
+.accept_request_button {
+    background-color: transparent;
+    color: #90EE90;
+    border-radius: 10px;
+}
+
+.profile_user_controls {
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .break_panel {
-    width: 80%;
-    height: 5px;
+    width: 90%;
+    height: 1vh;
     background-color: #233D4D;
-    margin: 20px auto;
+    margin: 2vh auto;
     border-radius: 10px;
 }
 

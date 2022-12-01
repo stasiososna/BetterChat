@@ -1,1 +1,29 @@
 @model MMIv3.Models.UserAction
+
+<body>
+    <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend> Upload Image </legend>
+            <label for="Image">Image</label>
+            <input type="file" name="Image" />
+            <br />
+
+
+            <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="1" />
+            <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+            <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.url" />
+
+            <input type="submit" value="Upload" />
+            <input type="submit" value="Confirm" />
+
+        </fieldset>
+    </form>
+    <h1>Uploaded Image @Model.url</h1>
+    @if (imagePath != "")
+    {
+        <div class="result">
+            <img src="@imagePath" alt="image" />
+
+        </div>
+    }
+</body>
