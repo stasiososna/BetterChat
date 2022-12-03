@@ -1,6 +1,7 @@
 @model MMIv3.Models.UserAction
 
-<body>
+@Html.ActionLink("Back", "LogIn", "Home", new { area = "" }, new { @class = "nav-link" })
+<!-- <body>
     <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend> Upload Image </legend>
@@ -10,20 +11,20 @@
 
 
             <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="1" />
-            <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
-            <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.url" />
+            <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="//Model.id" />
+            <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="//Model.url" />
 
             <input type="submit" value="Upload" />
             <input type="submit" value="Confirm" />
 
         </fieldset>
     </form>
-    <h1>Uploaded Image @Model.url</h1>
-    @if (imagePath != "")
+    <h1>Uploaded Image //Model.url</h1>
+    //if (imagePath != "")
     {
         <div class="result">
-            <img src="@imagePath" alt="image" />
+            <img src="//imagePath" alt="image" />
 
         </div>
     }
-</body>
+</body> -->

@@ -1,41 +1,43 @@
 ﻿@model MMIv3.Models.UserEx
-<header>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+</head>
+<body style="overflow-x: hidden; overflow-y: hidden;">
+    <div class="rounded_animation"></div>
     <div class="login_navcontainer">
         <div class="login_headercontainer">
             <div class="myimg">
-                <img class="baner_img" src="~/images/koya.svg" alt="logo"/>
+                <img class="baner_img" src="~/images/koya.svg" alt="logo" />
             </div>
             <div class="login_baner">
                 <h1 class="welcome_text">Welcome to Better Chat</h1>
             </div>
-            <!-- <div class="leftf">
-                @Html.ActionLink("LogIn!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-            </div> -->
         </div>
     </div>
-</header>
-<div class="login_page">
-    <div class="register_registerform">
-        <form method="post" action="/Home/SignIn">
-            <label class="col-form-label" for="email">Email:</label><br /><input id="email" name="email" class="form-control" type="text" /><br />
-            <label class="col-form-label" for="username">Username:</label><br /><input id="username" name="username" class="form-control" type="text" /><br />
-            <label class="col-form-label" for="password">Password:</label><br /><input id="password" name="password" class="form-control" type="password" /><br />
-            <p>Already have an account? @Html.ActionLink("Log in!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</p>
-            <button class="btn btn-primary buttonn" type="submit">Sign In</button>
-        </form>
+    <div class="login_page">
+        <div class="register_registerform">
+            <form method="post" action="/Home/SignIn" class="register_form">
+                <h1>Register</h1>
+                <input id="email" name="email" class="login_form_input" type="text" placeholder="Email" required /><br />
+                <input id="username" name="username" class="login_form_input" type="text" placeholder="Username" required /><br />
+                <input id="password" name="password" class="login_form_input" type="password" placeholder="Password" required" /><br />
+                <p>Already have an account? @Html.ActionLink("Log in!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</p>
+                <button class="btn btn-primary buttonn" type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="register_desc">
+            <p>
+                Better Chat is the most
+                innovative social platform
+                and place to talk with
+                people around the world!
+                What are you waiting for?
+                Join us now!
+            </p>
+        </div>
+        <div class="login_triangle"></div>
+        <div class="login_myicon">
+            <img class="login_descicon" src="~/images/koya.svg" alt="logo" />
+        </div>
     </div>
-    <div class="register_desc">
-        <p>
-            Better Chat is the most
-            innovative social platform
-            and place to talk with
-            people around the world!
-            What are you waiting for?
-            Join us now!
-        </p>
-    </div>
-    <div class="register_triangle"></div>
-    <div class="login_myicon">
-        <img class="login_descicon" src="~/images/koya.svg" alt="logo"/>
-    </div>
-    </div>
+</body>

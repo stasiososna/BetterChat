@@ -1,26 +1,24 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Blad";
 }
-
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+</head>
 <header>
-    <div class="mynav">
-        <div class="mmcontainer">
+    <div class="login_navcontainer">
+        <div class="login_headercontainer">
             <div class="myimg">
-                <img src="~/images/koya.svg" alt="" height="50" width="50" />
+                <img class="baner_img" src="~/images/koya.svg" alt="logo" />
             </div>
-            <div class="baner">
-                <h1>Welcome to better Chat</h1>
-            </div>
-            <div class="leftf">
-                @Html.ActionLink("LogIn!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-
+            <div class="login_baner">
+                <h1 class="welcome_text">Welcome to Better Chat</h1>
             </div>
         </div>
     </div>
 </header>
-<div class="mycontainer">
-
-<h2>Blad</h2>
-<p>Niepoprawna nazwa użytkownika bądź hasło</p>
+<div class="error_midmenu">
+    <div class="error_container">
+        <h1>Error</h1>
+        <p>The data you entered is incorrect. Please @Html.ActionLink("try again.", "Index", "Home", new { area = "" }, new { @class = "error_nav-link" })</p>
     </div>
+</div>

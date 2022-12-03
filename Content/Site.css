@@ -22,13 +22,6 @@ input, select, textarea {
     max-width: 280px;
 }
 
-.workspace {
-    background-color: #2C2F33;
-    color: white;
-    justify-content: center;
-    text-align: center;
-}
-
 .buttonn {
     align-items: center;
     background-color: #0075F2;
@@ -114,7 +107,7 @@ input {
 .register_registerform, .login_loginform {
     background-color: #23272A;
     width: 30vw;
-    margin-top: 5vh;
+    margin-top: 21vh;
     margin-left: 20vw;
     border-radius: 25px;
     float: left;
@@ -123,26 +116,58 @@ input {
 }
 
 .register_registerform {
-    height: 45vh;
+    height: 50vh;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
+
+    .register_registerform h1 {
+        color: #ADD8E6;
+        font-family: 'raleway';
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .register_form > input {
+        text-align: center;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px 3px;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        border-bottom: 1px solid #ADD8E6;
+        font-size: 16px;
+    }
+
+    .register_form > input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-transition-delay: 9999s;
+        transition-delay: 9999s;
+    }
+
+    .register_form > .buttonn {
+        margin-top: 20px;
+    }
 
 .register_desc, .login_desc {
     background-color: #0075F2;
     width: 30vw;
-    margin-top: 5vh;
+    margin-top: 21vh;
     border-radius: 25px;
-    -moz-border-radius-bottomright: 0;
     float: left;
     color: #ADD8E6;
     padding: 1%;
-    font-family: Verdana;
-    font-size: 2vw;
-    justify-content: center;
+    font-family: 'raleway';
+    font-size: 44px;
 }
 
 .register_desc {
-    height: 45vh;
+    height: 50vh;
 }
 
 .register_triangle {
@@ -161,8 +186,11 @@ input {
 /* PLIK INDEX.CSHTML */
 
 .login_navcontainer {
+    position: absolute;
     background-color: #2C2F33;
+    width: 100vw;
     height: 11vh;
+    z-index: 1;
 }
 
 .login_baner {
@@ -173,16 +201,91 @@ input {
 }
 
 .login_page {
-    width: 100vw;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
 }
+
+.rounded_animation {
+    z-index: -1;
+}
+
+    .rounded_animation::before, .rounded_animation::after {
+        position: absolute;
+        content: "";
+        width: 2000px;
+        height: 2000px;
+        border-top-left-radius: 40%;
+        border-top-right-radius: 45%;
+        border-bottom-left-radius: 35%;
+        border-bottom-right-radius: 40%;
+    }
+
+    .rounded_animation::before {
+        right: 40%;
+        bottom: 25%;
+        background-color: rgba(2, 128, 144, 0.2);
+        animation: wave 7s infinite;
+    }
+
+    .rounded_animation::after {
+        right: 30%;
+        bottom: 15%;
+        background-color: rgba(2, 128, 144, 0.2);
+        animation: wave 7s infinite;
+    }
+
+    @keyframes wave {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
 
 .login_loginform {
-    height: 40vh;
+    height: 45vh;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
+    .login_loginform h1 {
+        color: #ADD8E6;
+        font-family: 'raleway';
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .login_form > input {
+        text-align: center;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px 3px;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        border-bottom: 1px solid #ADD8E6;
+        font-size: 16px;
+    }
+
+        .login_form > input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-transition-delay: 9999s;
+            transition-delay: 9999s;
+        }
+
+    .login_form > .buttonn {
+        margin-top: 30px;
+    }
+
 .login_desc {
-    height: 40vh;
+    height: 45vh;
 }
 
 .login_triangle {
@@ -196,7 +299,7 @@ input {
     border-color: transparent #0075F2 transparent transparent;
 }
 
-.login_myicon {
+.login_myicon, .register_myicon {
     clear: both;
     margin-left: 65vw;
 }
@@ -204,6 +307,38 @@ input {
 .login_descicon {
     width: 20vw;
     height: 20vh;
+}
+
+
+
+/* PLIK BLAD.CSHTML */
+.error_midmenu {
+    display: flex;
+    justify-content: center;
+}
+
+.error_container {
+    font-family: 'raleway';
+    background-color: #0075f2;
+    text-align: center;
+    width: 35vw;
+    margin-top: 10vh;
+    border-radius: 25px;
+    color: #ADD8E6;
+    padding: 15px;
+}
+
+.error_container h1 {
+    font-size: 48px;
+}
+
+.error_container p {
+    font-size: 24px;
+}
+
+.error_nav-link {
+    color: #add8e6;
+    text-decoration: underline;
 }
 
 
@@ -413,24 +548,37 @@ input {
 
 @media screen and (min-width: 800px) and  (max-width: 1366px) and (min-height: 500px) and (max-height: 768px) {
     .register_registerform {
-        height: 63vh;
+        margin-top: 20vh;
+        height: 72vh;
     }
 
-    .register_desc {
-        height: 63vh;
+    .register_desc{
+        margin-top: 20vh;
+        height: 72vh;
+        display: flex;
+        align-items: center;
     }
 
     .register_desc p, .login_desc p {
-        font-size: 2.2vw;
+        font-size: 34px;
+    }
+
+    .rounded_animation::before, .rounded_animation::after {
+        width: 1500px;
+        height: 1500px;
+    }
+
+    .login_triangle, .login_myicon{
+        display: none;
     }
     
     .login_navcontainer {
-        height: 15vh;
+        height: 13vh;
     }
 
     .baner_img {
-        width: 15vw;
-        height: 15vh;
+        width: 13vw;
+        height: 13vh;
     }
 
     .login_baner {
@@ -438,6 +586,12 @@ input {
     }
 
     .login_loginform, .login_desc {
-        height: 52vh;
+        margin-top: 20vh;
+        height: 63vh;
+    }
+
+    .login_desc {
+        display: flex;
+        align-items: center;
     }
 }

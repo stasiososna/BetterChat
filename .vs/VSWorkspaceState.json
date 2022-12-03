@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers",
+    "\\Views",
+    "\\Views\\Home"
   ],
-  "SelectedNode": "\\C:\\Users\\Michal\\Source\\Repos\\BetterChat",
+  "SelectedNode": "\\Views\\Home\\LogIn.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -170,7 +170,6 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Blad.cshtml" />
     <Content Include="Views\Home\Settings.cshtml" />
-    <Content Include="Views\Home\ProfSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
