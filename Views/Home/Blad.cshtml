@@ -4,7 +4,8 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 </head>
-<header>
+<body style="overflow-x: hidden; overflow-y: hidden;">
+    <div class="rounded_animation"></div>
     <div class="login_navcontainer">
         <div class="login_headercontainer">
             <div class="myimg">
@@ -15,10 +16,14 @@
             </div>
         </div>
     </div>
-</header>
-<div class="error_midmenu">
-    <div class="error_container">
-        <h1>Error</h1>
-        <p>The data you entered is incorrect. Please @Html.ActionLink("try again.", "Index", "Home", new { area = "" }, new { @class = "error_nav-link" })</p>
+    <div class="error_midmenu">
+        <div class="error_container">
+            <h1>Error</h1>
+            <p>The data you entered is incorrect. Please @Html.ActionLink("try again.", "Index", "Home", new { area = "" }, new { @class = "error_nav-link" })</p>
+        </div><br />
+        <div class="error_triangle"></div>
+        <div class="error_myicon">
+            <img class="error_descicon" src="~/images/koya.svg" alt="logo" />
+        </div>
     </div>
-</div>
+</body>

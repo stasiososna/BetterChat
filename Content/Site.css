@@ -84,7 +84,6 @@ input {
     width: 50px;
     border-radius: 50%;
     border: 2px solid black;
-    margin: auto;
 }
 
 .col-form-label {
@@ -96,7 +95,7 @@ input {
     font-size: 3.5vw;
 }
 
-.material-symbols-outlined {
+.fa-solid {
     float: left;
 }
 
@@ -259,7 +258,8 @@ input {
         margin-bottom: 30px;
     }
 
-    .login_form > input {
+    .login_form > input, 
+    .request_form_input {
         text-align: center;
         display: block;
         width: 100%;
@@ -307,22 +307,32 @@ input {
 .login_descicon {
     width: 20vw;
     height: 20vh;
+    animation: bounce 2s infinite linear;
+    animation-timing-function: ease;
+    position: relative;
 }
+
+    @keyframes bounce {
+        0% {top: 0;}
+        50% {top: -2rem;}
+        100% {top: 0;}
+    }
 
 
 
 /* PLIK BLAD.CSHTML */
 .error_midmenu {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    position: absolute;
+    left: 32%;
 }
 
 .error_container {
     font-family: 'raleway';
-    background-color: #0075f2;
+    background-color: #0075F2;
     text-align: center;
     width: 35vw;
-    margin-top: 10vh;
+    margin-top: 20vh;
     border-radius: 25px;
     color: #ADD8E6;
     padding: 15px;
@@ -339,6 +349,26 @@ input {
 .error_nav-link {
     color: #add8e6;
     text-decoration: underline;
+}
+
+.error_triangle {
+    display: inline-block;
+    border-style: solid;
+    border-width: 0 10vh 2.5vw 0;
+    border-color: transparent #0075F2 transparent transparent;
+    margin: -5vh 0vw 0vh 35vh;
+}
+
+.error_myicon {
+    margin-left: 20vw;
+}
+
+.error_descicon {
+    width: 20vw;
+    height: 20vh;
+    position: relative;
+    animation: bounce 2s infinite linear;
+    animation-timing-function: ease;
 }
 
 
@@ -359,10 +389,14 @@ input {
     margin-top: 15px;
 }
 
+.leftmenu_elipsa {
+    margin: auto;
+}
+
 .profile_page_middlemenu {
     background-color: #222222;
     color: #ADD8E6;
-    width: 77vw;
+    width: 80vw;
     height: 100vh;
 }
 
@@ -370,7 +404,264 @@ input {
     height: 7vh;
 }
 
-.color_switch_div {
+.profile_info {
+    height: 38vh;
+    margin-top: 20px;
+}
+
+.profileicon_elipsa {
+    width: 15vw;
+    height: 28vh;
+    margin: auto;
+}
+
+.profile_aboutme, .profile_posts {
+    width: 35vw;
+    height: 40vh;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 10px 20px 0px 20px;
+    text-align: center;
+}
+.profile_aboutme {
+    float: left;
+}
+
+.profile_posts {
+    float: right;
+}
+
+.profile_page_rightmenu {
+    background-color: #23272A;
+    width: 15vw;
+    color: #ADD8E6;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    padding: 20px 10px;
+}
+
+.profile_friends_list {
+    height: 43vh;
+}
+
+    .profile_friends_list p {
+        font-size: 20px;
+    }
+
+.page_link p {
+    margin-left: 30px;
+}
+
+    .page_link :hover {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.form_add_friend {
+    font-size: 20px;
+}
+
+.profile_sendreq {
+    height: 16vh;
+    text-align: center;
+    display: none;
+}
+
+.send_request_button {
+    margin-top: 10px;
+    background-color: #0075F2;
+    border: none;
+    border-radius: 15px;
+    width: 50%;
+    height: 30px;
+}
+
+.friend {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.friend > .name {
+    margin-left: 15px;
+}
+
+.profile_friends_requests {
+    height: 30vh;
+}
+
+.profile_friends_requests p {
+    font-size: 20px;
+}
+
+.friend_request {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.request_user_name p {
+    margin-top: 5px;
+}
+
+.accept_request_button {
+    background-color: transparent;
+    color: #90EE90;
+    border-radius: 10px;
+}
+
+.profile_user_controls {
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.break_panel {
+    width: 90%;
+    height: 1vh;
+    background-color: #233D4D;
+    margin: 2vh auto;
+    border-radius: 10px;
+}
+
+.span_user_control {
+    width: 60%;
+    height: 5vh;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-family: 'raleway';
+    letter-spacing: 1px;
+}
+
+    .span_user_control i {
+        margin: 5px 10px 0px 0px;
+        color: #ADD8E6;
+    }
+
+    .span_user_control a {
+        color: #ADD8E6;
+        text-decoration: none;
+    }
+
+.span_settings {
+    background: linear-gradient(#3f464b 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+    transition: .4s, background-position 0s;
+}
+
+    .span_settings:hover {
+        --p: 100%;
+    }
+
+.span_logout {
+    background: linear-gradient(#3f464b 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+    transition: .4s, background-position 0s;
+}
+
+    .span_logout:hover {
+        --p: 100%;
+    }
+
+
+
+/* PLIK SETTINGS.CSHTML */
+.settings_navcontainer {
+    width: 100vw;
+    height: 10vh;
+    background: #222;
+}
+
+.settings_menu {
+    width: 100vw;
+    height: 70vh;
+    background: #222;
+}
+
+.settings_footer {
+    width: 100vw;
+    height: 15vh;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings_icons {
+    display: flex;
+    justify-content: center;
+}
+
+.settings_icon {
+    position: relative;
+    width: 108px;
+    height: 10vh;
+    display: flex;
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+    .settings_icon::before {
+        position: absolute;
+        content: "";
+        width: 250px;
+        height: 30px;
+        background-color: white;
+        opacity: 0.4;
+        top: 0;
+        left: 0;
+        transform: translate(-70px, 250px) rotateZ(30deg);
+        transition: transform 0.5s;
+    }
+
+    .settings_icon:hover::before {
+        transform: translate(20px, -30px) rotateZ(30deg);
+    }
+
+    .settings_icon i {
+        font-size: 44px;
+        transition: transform 0.2s;
+    }
+
+    .settings_icon:hover i {
+        transform: scale(1.5);
+    }
+
+    .facebook i {
+        color: #4267B2;
+    }
+
+    .twitter i {
+        color: #1DA1F2;
+    }
+
+    .instagram i {
+        color: #C13584;
+    }
+
+    .google-plus i {
+        color: #DB4437;
+    }
+
+    .youtube i {
+        color: #FF0000;
+    }
+
+    .spotify i {
+        color: #1DB954;
+    }
+
+/* .color_switch_div {
     float: right;
 }
 
@@ -411,138 +702,28 @@ input {
         transition: .4s;
     }
 
-    input:checked + .slider {
-        background-color: #2196F3;
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
     }
-
-    input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    .slider.round {
-        border-radius: 34px;
-    }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-.profile_info {
-    height: 38vh;
-    margin-top: 20px;
-}
-
-.profileicon_elipsa {
-    width: 15vw;
-    height: 28vh;
-    margin: auto;
-}
-
-.profile_aboutme, .profile_posts {
-    width: 35vw;
-    height: 40vh;
-    border: 1px solid white;
-    border-radius: 15px;
-    margin: 10px 20px 0px 20px;
-    text-align: center;
-}
-.profile_aboutme {
-    float: left;
-}
-
-.profile_posts {
-    float: right;
-}
-
-.profile_page_rightmenu {
-    background-color: #23272A;
-    width: 18vw;
-    color: #ADD8E6;
-    height: 100vh;
-    position: fixed;
-    right: 0;
-    padding: 20px 10px;
-}
-
-.profile_friends_list {
-    height: 43vh;
-}
-
-.profile_sendreq {
-    height: 20vh;
-    text-align: center;
-    display: none;
-}
-
-.send_request_button {
-    margin-top: 10px;
-    background-color: #0075F2;
-    border: none;
-    border-radius: 15px;
-    width: 50%;
-    height: 30px;
-}
-
-.profile_friends_requests {
-    height: 30vh;
-}
-
-.friend_request {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.request_user_name p {
-    margin-top: 5px;
-}
-
-.accept_request_button {
-    background-color: transparent;
-    color: #90EE90;
-    border-radius: 10px;
-}
-
-.profile_user_controls {
-    height: 12vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.break_panel {
-    width: 90%;
-    height: 1vh;
-    background-color: #233D4D;
-    margin: 2vh auto;
-    border-radius: 10px;
-}
-
-.page_link {
-    color: #ADD8E6;
-}
-
-.page_link p {
-    margin-left: 30px;
-}
-
-.page_link :hover {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.div_button {
-    height: 30px;
-}
-
-
+*/
 
 /* USTAWIENIA DLA MNIEJSZYCH EKRANÓW */
 
@@ -593,5 +774,48 @@ input {
     .login_desc {
         display: flex;
         align-items: center;
+    }
+
+    .error_triangle {
+        margin: -3vh 0vw 0vh 20vw;
+    }
+
+    .profile_page_middlemenu {
+        width: 77vw;
+    }
+
+    .profile_page_rightmenu {
+        width: 18vw;
+    }
+
+    .profile_friends_list p,
+    .form_add_friend,
+    .profile_friends_requests p {
+        font-size: 16px;
+    }
+
+    .profile_sendreq {
+        height: 23vh;
+    }
+
+    .span_user_control {
+        font-size: 18px;
+    }
+
+    .settings_navcontainer {
+        height: 13vh;
+    }
+
+    .settings_footer {
+        height: 12vh;
+    }
+
+    .settings_icon {
+        width: 61px;
+        height: 8vh;
+    }
+
+    .settings_icon i {
+        font-size: 24px;
     }
 }
