@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Antlr.Runtime.Tree;
+using System.Web.Services.Protocols;
 
 namespace MMIv3.Models
 {
@@ -23,7 +24,12 @@ namespace MMIv3.Models
         public int accepted { get; set; }
         public int denied { get; set; }
         public SqlConnection conn;
-
+        public int focusedfriendid { get; set; }
+        public Friend focusedfriend { get; set; }
+        public List<Message> lastfive;
+        public string sendmessage { get; set; }
+        public Profile profile { get; set; }
+        public string changeaboutme { get; set; }
 
 
         public UserAction(User user, int action2, int id2)
@@ -42,16 +48,61 @@ namespace MMIv3.Models
         }
         public void getlastthree() { 
             lastthree = new List<Friend>();
-            getmessages();
-            for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
             {
+                idoffriends[j] = 0;
+            
+            }
+            getmessages();
+            int i = 0;
+            while (i<3 )
+            {
+                if(idoffriends[i] != 0)
                 lastthree.Add(new Friend(idoffriends[i], conn));
+                i++;
             }
             
         
         
         
         
+        }
+        public void setlastmessages() {
+            lastfive = new List<Message>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select content,wsend from messagesb where user1_id in (" + id + "," + focusedfriendid + ") and  user2_id in (" + id + "," + focusedfriendid + ") order by senddate ";
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row[0] != null)
+                {
+                    if (Int32.Parse(row[1].ToString()) != id)
+                    {
+                        string content = row[0].ToString();
+                        lastfive.Add(new Message(content) { wsend = "You" });
+                    }
+                    else {
+                        string content = row[0].ToString();
+                        lastfive.Add(new Message(content) { wsend = "Me" });
+
+                    }
+                }
+                else
+                {
+                    lastfive.Add(new Message("To początek konwersacji! Pamiętaj aby być miły!"));
+                }
+            
+            }
+          
+
+
+
+
+
         }
         public void GetFriends()
         {
@@ -118,6 +169,27 @@ namespace MMIv3.Models
 
 
         }
+        public void setfriend() {
+            focusedfriend = new Friend();
+            
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.CommandText = "select username, avatar from User1 where id = '" + focusedfriendid + "'";
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                focusedfriend.Name = row[0].ToString();
+                focusedfriend.avatar = row[1].ToString();
+                focusedfriend.Id = focusedfriendid;
+            
+            }
+        
+        
+        
+        }
         public void getmessages() {
 
 
@@ -137,6 +209,7 @@ namespace MMIv3.Models
 
                 if (id1 == id)
                 {
+                    if (id2 != idoffriends[0]&& id2 != idoffriends[1]&& id2 != idoffriends[2])
                     if (idoffriends[0] != 0)
                     {
                         if (idoffriends[1] != 0)
@@ -158,7 +231,8 @@ namespace MMIv3.Models
                 }
                 if (id2 == id)
                 {
-                    if (idoffriends[0] != 0)
+                    if (id1 != idoffriends[0] && id1 != idoffriends[1] && id1 != idoffriends[2])
+                        if (idoffriends[0] != 0)
                     {
                         if (idoffriends[1] != 0)
                         {
@@ -181,11 +255,7 @@ namespace MMIv3.Models
 
             }
 
-                for (int j = 0; j < 2; j++)
-                {
-                    if (idoffriends[j] == 0)
-                        idoffriends[j] = 1;
-                }
+
 
 
 
@@ -205,7 +275,7 @@ namespace MMIv3.Models
             sda.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
-                url = row[0].ToString();
+                url = "/images/" +  row[0].ToString();
 
             }
 
@@ -299,6 +369,7 @@ namespace MMIv3.Models
 
 
         }
+
 
 
     }

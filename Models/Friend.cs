@@ -37,7 +37,7 @@ namespace MMIv3.Models
             foreach (DataRow row in dt.Rows)
             {
                 Name = row[0].ToString();
-                avatar = row[1].ToString();
+                avatar = "/images/" + row[1].ToString();
             
             
             }

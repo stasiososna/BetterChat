@@ -68,11 +68,6 @@ input {
     margin-left: auto;
 }
 
-.leftf {
-    color: #ADD8E6;
-    float: right;
-}
-
 .baner_img {
     width: 11vw;
     height: 11vh;
@@ -115,7 +110,7 @@ input {
 }
 
 .register_registerform {
-    height: 50vh;
+    height: 55vh;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -153,6 +148,94 @@ input {
         margin-top: 20px;
     }
 
+    .register_container .strengthMeter {
+        width: 100%;
+        height: 4px;
+        background-color: #fff;
+        margin-top: 10px;
+    }
+
+        .register_container .strengthMeter::before {
+            content: '';
+            width: 0;
+            height: 5px;
+            transition: 0.5s;
+            position: absolute;
+            left: 27.6%;
+        }
+
+    .register_container.weak .strengthMeter::before {
+        width: 28px;
+        background-color: #f00;
+        filter: drop-shadow(0 0 5px #f00);
+    }
+
+    .register_container.medium .strengthMeter::before {
+        width: 185px;
+        background-color: #ffa500;
+        filter: drop-shadow(0 0 5px #ffa500);
+    }
+
+    .register_container.strong .strengthMeter::before {
+        width: 285px;
+        background-color: #0f0;
+        filter: drop-shadow(0 0 5px #0f0);
+    }
+
+    .register_container .strengthMeter::after {
+        transition: 0.5s;
+        color: #fff;
+        position: absolute;
+        left: 31%;
+        bottom: 36.5%;
+    }
+
+    .register_container.weak .strengthMeter::after {
+        content: 'Your Password is Weak';
+        color: #f00;
+        filter: drop-shadow(0 0 5px #f00);
+    }
+
+    .register_container.medium .strengthMeter::after {
+        content: 'Your Password is Medium';
+        color: #ffa500;
+        filter: drop-shadow(0 0 5px #ffa500);
+    }
+
+    .register_container.strong .strengthMeter::after {
+        content: 'Your Password is Strong';
+        color: #0f0;
+        filter: drop-shadow(0 0 5px #0f0);
+    }
+
+.show {
+    width: 14.8vw;
+    height: 4vh;
+    background-color: #333;
+    border: 6px solid #222;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .show::before {
+        content: 'Show Password';
+        font-size: 0.6em;
+        color: #fff;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .show.hide::before {
+        content: 'Hide Password';
+    }
+
+    .register_container p {
+        margin-top: 35px;
+    }
+
 .register_desc, .login_desc {
     background-color: #0075F2;
     width: 30vw;
@@ -166,7 +249,7 @@ input {
 }
 
 .register_desc {
-    height: 50vh;
+    height: 55vh;
 }
 
 .register_triangle {
@@ -259,10 +342,11 @@ input {
     }
 
     .login_form > input, 
-    .request_form_input {
+    .request_form_input,
+    .register_container > input {
         text-align: center;
         display: block;
-        width: 100%;
+        width: 50vh;
         margin: 10px 0;
         padding: 10px 3px;
         background-color: transparent;
@@ -385,23 +469,30 @@ input {
     height: 100vh;
 }
 
-.leftmenu_elipsas {
-    margin-top: 15px;
-}
-
-.leftmenu_elipsa {
-    margin: auto;
-}
+    .profile_page_leftmenu > .elipsa {
+        margin: 10px auto;
+    }
 
 .profile_page_middlemenu {
     background-color: #222222;
     color: #ADD8E6;
     width: 80vw;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+.middlemenu_fixed {
+    position: fixed;
+    width: 80vw;
 }
 
 .middlemenu_baner {
     height: 7vh;
+}
+
+.logged_as {
+    float: right;
+    font-size: 24px;
+    font-family: 'raleway';
 }
 
 .profile_info {
@@ -780,7 +871,7 @@ input:checked + .slider:before {
         margin: -3vh 0vw 0vh 20vw;
     }
 
-    .profile_page_middlemenu {
+    .middlemenu_fixed {
         width: 77vw;
     }
 

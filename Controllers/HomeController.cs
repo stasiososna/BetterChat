@@ -30,61 +30,133 @@ namespace MMIv3.Controllers
         }
         public ActionResult LogIn(UserAction userAction)
         {
-            userAction.SetUser(userAction.id);
-            conn.Close();
-            userAction.GetFriends();
-            userAction.GetRequests();
-            userAction.SetProfPic();
-            if (userAction.action == 1 && userAction.url != "null")
+            if (userAction.id != 0)
+            {
+                userAction.SetUser(userAction.id);
+                conn.Close();
+                userAction.GetFriends();
+                userAction.GetRequests();
+                userAction.SetProfPic();
+                if (userAction.action == 1 && userAction.url != "null")
+                {
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    result = getid(userAction.username, userAction.password, conn);
+                    cmd.CommandText = "update User1 set avatar = " + userAction.url + " where id = " + userAction.id;
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                }
+
+                if (userAction.action == 2 && userAction.sendreqname != "")
+                {
+
+                    SqlCommand cmd = new SqlCommand();
+                    int result = getid2(userAction.sendreqname, conn);
+                    Increment increment = new Increment();
+                    int id = increment.oblicz("Friends");
+
+                    conn.Open();
+                    cmd.CommandText = "Insert into Friends(id, user1_id, user2_id, currstate,Wsend) values ('" + id + "','" + userAction.id + "','" + result + "','0','" + userAction.id + "')";
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+
+                }
+                if (userAction.action == 3)
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    conn.Open();
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Connection = conn;
+                    cmd.CommandText = "update Friends set currstate = '1' where user1_id in (" + userAction.id + "," + userAction.accepted + ") and user2_id in (" + userAction.id + "," + userAction.accepted + ")";
+                    cmd.ExecuteNonQuery();
+
+
+
+                    conn.Close();
+
+
+                }
+                if (userAction.action == 4 || userAction.action==8 || userAction.action==7)
+                {
+                    if (userAction.action == 4)
+                    {
+                        if (userAction.focusedfriendid == userAction.id)
+                        {
+                            userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
+                            userAction.profile = new Profile(userAction.focusedfriend, userAction.id, conn, userAction.username);
+                        }
+                        else
+                        {
+                            userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
+                            userAction.profile = new Profile(userAction.focusedfriend, conn, userAction.focusedfriend.Name);
+
+
+                        }
+                    }
+                    else if (userAction.action == 7)
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        conn.Open();
+                        cmd.Connection = conn;
+                        cmd.CommandText = "update profil set aboutme = '" + userAction.changeaboutme + "' where id='" + userAction.focusedfriendid + "';";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    else 
+                    { 
+                    
+                    
+                    
+                    
+                    
+                    }
+
+
+                    userAction.setfriend();
+
+                }
+                if (userAction.action == 5 || userAction.action == 6)
+                {
+                    conn.Open();
+                    userAction.setfriend();
+                    if (userAction.action == 6)
+                    {
+                        if (userAction.sendmessage != "")
+                        {
+                            Increment inc = new Increment();
+                            int result = inc.oblicz("messagesb");
+                            SqlCommand cmd = new SqlCommand();
+                            cmd.Connection = conn;
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "insert into messagesb(id,user1_id,user2_id,content,senddate,wsend) " +
+                                "values ('" + result + "','" + userAction.id + "','" + userAction.focusedfriendid + "','" + userAction.sendmessage + "',GETDATE(),'" + userAction.id + "') ";
+                            cmd.ExecuteNonQuery();
+                            userAction.sendmessage = "";
+                            conn.Close();
+                        }
+                    }
+                    userAction.setlastmessages();
+
+
+                }
+                conn.Close();
+                userAction.GetFriends();
+                userAction.GetRequests();
+                userAction.SetProfPic();
+                userAction.getlastthree();
+                return View(userAction);
+            }
+            else
             {
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = System.Data.CommandType.Text;
-                result = getid(userAction.username, userAction.password, conn);
-                cmd.CommandText = "update User1 set avatar = " + userAction.url + " where id = " + userAction.id;
-                cmd.ExecuteNonQuery();
-                conn.Close();
-
+                return View("Blad");
             }
-
-            if (userAction.action == 2 && userAction.sendreqname != "")
-            {
-
-                SqlCommand cmd = new SqlCommand();
-                int result = getid2(userAction.sendreqname, conn);
-                Increment increment = new Increment();
-                int id = increment.oblicz("Friends");
-
-                conn.Open();
-                cmd.CommandText = "Insert into Friends(id, user1_id, user2_id, currstate,Wsend) values ('" + id + "','" + userAction.id + "','" + result + "','0','" + userAction.id + "')";
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Connection = conn;
-                cmd.ExecuteNonQuery();
-                conn.Close();
-
-
-            }
-            if (userAction.action == 3)
-            {
-                SqlCommand cmd = new SqlCommand();
-                conn.Open();
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Connection = conn;
-                cmd.CommandText = "update Friends set currstate = '1' where user1_id in (" + userAction.id + "," + userAction.accepted + ") and user2_id in (" + userAction.id + "," + userAction.accepted + ")";
-                cmd.ExecuteNonQuery();
-
-
-
-                conn.Close();
-
-
-            }
-            conn.Close();
-            userAction.GetFriends();
-            userAction.GetRequests();
-            userAction.SetProfPic();
-            userAction.getlastthree();
-            return View(userAction);
         }
         public ActionResult LogInto(User user)
         {
@@ -153,8 +225,8 @@ namespace MMIv3.Controllers
             int temp1 = 0;
             Increment temp = new Increment();
             temp1 = temp.oblicz("User1");
-
-            conn.Open();
+            userex.createprof(temp1,conn);
+            
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.Connection = conn;
@@ -177,8 +249,6 @@ namespace MMIv3.Controllers
         {
             return View(userAction);
         }
-
-
 
     }
 }

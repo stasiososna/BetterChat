@@ -3,9 +3,10 @@
     "",
     "\\Content",
     "\\Controllers",
+    "\\Models",
     "\\Views",
     "\\Views\\Home"
   ],
-  "SelectedNode": "\\Views\\Home\\Settings.cshtml",
+  "SelectedNode": "\\Views\\Home\\LogIn.cshtml",
   "PreviewInSolutionExplorer": false
 }

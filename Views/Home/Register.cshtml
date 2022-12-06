@@ -17,12 +17,16 @@
     <div class="login_page">
         <div class="register_registerform">
             <form method="post" action="/Home/SignIn" class="register_form">
-                <h1>Register</h1>
-                <input id="email" name="email" class="login_form_input" type="text" placeholder="Email" required /><br />
-                <input id="username" name="username" class="login_form_input" type="text" placeholder="Username" required /><br />
-                <input id="password" name="password" class="login_form_input" type="password" placeholder="Password" required" /><br />
-                <p>Already have an account? @Html.ActionLink("Log in!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</p>
-                <button class="btn btn-primary buttonn" type="submit">Sign In</button>
+                <div class="register_container">
+                    <h1>Register</h1>
+                    <input id="email" name="email" class="login_form_input" type="text" placeholder="Email" required /><br />
+                    <input id="username" name="username" class="login_form_input" type="text" placeholder="Username" required /><br />
+                    <input id="password" name="password" class="login_form_input register_password" type="password" placeholder="Password" required" />
+                    <div class="show"></div>
+                    <div class="strengthMeter"></div>
+                    <p>Already have an account? @Html.ActionLink("Log in!", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</p>
+                    <button class="btn btn-primary buttonn" type="submit">Sign In</button>
+                </div>
             </form>
         </div>
         <div class="register_desc">
@@ -41,3 +45,55 @@
         </div>
     </div>
 </body>
+<script>
+    function Strength(password) {
+        let i = 0;
+        if (password.length > 6) {
+            i++;
+        }
+        if (password.length >= 10) {
+            i++;
+        }
+        if (/[A-Z]/.test(password)) {
+            i++;
+        }
+        if (/[0-9]/.test(password)) {
+            i++;
+        }
+        if (/[A-Za-z0-8]/.test(password)) {
+            i++;
+        }
+        return i;
+    }
+    let container = document.querySelector('.register_container');
+    document.addEventListener("keyup", function (e) {
+        let password = document.querySelector('#password').value;
+        let strength = Strength(password);
+        if (strength <= 2) {
+            container.classList.add('weak');
+            container.classList.remove('medium');
+            container.classList.remove('strong');
+        }
+        else if (strength >= 2 && strength <= 4) {
+            container.classList.remove('weak');
+            container.classList.add('medium');
+            container.classList.remove('strong');
+        }
+        else {
+            container.classList.remove('weak');
+            container.classList.remove('medium');
+            container.classList.add('strong');
+        }
+    })
+    let pswrd = document.querySelector('#password');
+    let show = document.querySelector('.show');
+    show.onclick = function () {
+        if (pswrd.type === 'password') {
+            pswrd.setAttribute('type', 'text');
+            show.classList.add('hide');
+        } else {
+            pswrd.setAttribute('type', 'password');
+            show.classList.remove('hide');
+        }
+    }
+</script>

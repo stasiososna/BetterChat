@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace MMIv3.Models
 {
-    public class Message
+    public class Posty
     {
-
+        public int Id { get; set; }
         public string content { get; set; }
-        public string wsend { get; set; }
-        public Message(string a) { 
-        content = a;
+        public int sender { get; set; }
+        public Posty(int id,string value) {
+        content = value;
+            sender = id;
+            
         
         
         }
