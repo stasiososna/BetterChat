@@ -13,7 +13,7 @@ namespace MMIv3.Models
     {
         public Friend Friend { get; set; }
         public List<Posty> posty;
-        public int ifmeid;
+        public int ifmeid=0;
         public string username { get; set; }
         public string aboutme { get; set; }
 
@@ -54,6 +54,28 @@ namespace MMIv3.Models
             {
                 aboutme = row[0].ToString();
             }
+
+
+        }
+        public void getposts(SqlConnection conn) {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.Text;
+            if (ifmeid != 0)
+                cmd.CommandText = "select adderid,content from posts where adderid==" + ifmeid + ";";
+            else 
+                cmd.CommandText= "select adderid,content from posts where adderid==" + Friend.Id + ";";
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                posty.Add(new Posty(Int32.Parse(row[0].ToString()), row[1].ToString()));
+            
+            
+            }
+
+
 
 
         }

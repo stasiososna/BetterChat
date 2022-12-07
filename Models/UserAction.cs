@@ -30,6 +30,7 @@ namespace MMIv3.Models
         public string sendmessage { get; set; }
         public Profile profile { get; set; }
         public string changeaboutme { get; set; }
+        public string postcontent { get; set; }
 
 
         public UserAction(User user, int action2, int id2)
@@ -39,12 +40,12 @@ namespace MMIv3.Models
             username = user.username;
             password = user.password;
             id = id2;
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
 
         }
 
         public UserAction() {
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
         }
         public void getlastthree() { 
             lastthree = new List<Friend>();

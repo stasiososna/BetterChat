@@ -910,3 +910,10 @@ input:checked + .slider:before {
         font-size: 24px;
     }
 }
+.Me {
+background-color:red;
+
+}
+.You{
+    background-color:blue;
+}
