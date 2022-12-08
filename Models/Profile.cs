@@ -22,7 +22,7 @@ namespace MMIv3.Models
             username = name;
             posty = new List<Posty>();
             Friend = friend1;
-            conn.Open();
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "select aboutme from profil where id = '" + friend1.Id + "'";
@@ -43,7 +43,7 @@ namespace MMIv3.Models
             posty = new List<Posty>();
             username = name;
             Friend = friend1;
-            conn.Open();
+            
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "select aboutme from profil where id = '" + ifmeid + "'";
@@ -57,14 +57,15 @@ namespace MMIv3.Models
 
 
         }
+
         public void getposts(SqlConnection conn) {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandType = CommandType.Text;
             if (ifmeid != 0)
-                cmd.CommandText = "select adderid,content from posts where adderid==" + ifmeid + ";";
+                cmd.CommandText = "select adderid,content from posts where adderid=" + ifmeid + ";";
             else 
-                cmd.CommandText= "select adderid,content from posts where adderid==" + Friend.Id + ";";
+                cmd.CommandText= "select adderid,content from posts where adderid=" + Friend.Id + ";";
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sda.Fill(dt);

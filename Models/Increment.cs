@@ -8,7 +8,7 @@ namespace MMIv3.Models
 {
     public class Increment
     {
-        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
         public int oblicz(string db)
         {
             int result=1;
