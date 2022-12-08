@@ -13,7 +13,7 @@ namespace MMIv3.Controllers
     {
         public int result;
         public int islogged = 0;
-        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
         public ActionResult Index()
         {
             var user = new User();
