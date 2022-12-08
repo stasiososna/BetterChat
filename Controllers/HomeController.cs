@@ -13,7 +13,7 @@ namespace MMIv3.Controllers
     {
         public int result;
         public int islogged = 0;
-        static SqlConnection conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
         public ActionResult Index()
         {
             var user = new User();
@@ -274,11 +274,6 @@ namespace MMIv3.Controllers
 
 
             return View("Index");
-        }
-
-        public ActionResult Settings(UserAction userAction)
-        {
-            return View(userAction);
         }
 
     }

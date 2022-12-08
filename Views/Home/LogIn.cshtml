@@ -23,14 +23,12 @@
         }
     }
 }
-
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 </head>
 <body>
     <div class="profile_page_mycontainer">
-        
             <div class="profile_page_leftmenu">
                 <div class="leftmenu_elipsas">
                     @foreach (MMIv3.Models.Friend friend2 in Model.lastthree)
@@ -39,27 +37,36 @@
                             <label for="action"></label><input type="hidden" id="action" name="action" value="5" />
                             <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
                             <label for="focusedfriendid"></label><input type="hidden" value="@friend2.Id" name="focusedfriendid" id="focusedfriendid" />
-                            <div class="elipsa"><button type="submit"><img src="@friend2.avatar" /></button> </div></form>
+                            <div class="elipsa"><button type="submit" class="elipsa_no_border"><img src="@friend2.avatar" class="elipsa_no_border"/></button></div>
+                        </form>
                     }
                     </div>
                 <div class="Groupscreate">
                     <form action="/Home/LogIn" role="form" method="post">
                         <label for="action"></label><input type="hidden" id="action" name="action" value="11" />
                         <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
-                        <button type="submit"><p>+</p></button>
+                        <button type="submit" class="elipsa group_elipsa"><p style="font-size: 24px; margin-top: 5px;">+</p></button>
                     </form>
                 </div>
             </div>
             <div class="profile_page_middlemenu">
+                <div class="middlemenu_baner">
+                    <img src="~/images/koya.svg" style="float: left; width:7vw; height: 7vh;" />
+                    <input type="text" placeholder="Search tags in profile" style="float: left;" />
+                    <div class="Thatsu">
+                        <form action="/Home/LogIn" role="form" method="post">
+                            <label for="action"></label><input type="hidden" id="action" name="action" value="4" />
+                            <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                            <label for="focusedfriendid"></label><input type="hidden" value="@Model.id" name="focusedfriendid" id="focusedfriendid" />
+                            <button type="submit">Your profile</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="profile_break" style="width: 100%; height: 3vh; background-color: #4B4E6D; clear: both;"></div>
                 @if (Model.action == 4 || Model.action == 9)
                 {
                     if (Model.id == Model.profile.ifmeid)
                     {
-                        <div class="middlemenu_baner">
-                            <img src="~/images/koya.svg" style="float: left; width:7vw; height: 7vh;" />
-                            <input type="text" placeholder="Search tags in profile" style="float: left;" />
-                        </div>
-                        <div class="profile_break" style="width: 100%; height: 40px; background-color: #4B4E6D; clear: both;"></div>
                         <div class="profile_info">
                             <div class="profileicon_elipsa">
                                 <img src="@Model.profile.Friend.avatar" style="width: 100%; height: 100%; border-radius: 50%;" /><br />
@@ -69,40 +76,32 @@
                         <div class="profile_aboutme">
                             <form method="post" action="/Home/LogIn" role="form">
                                 <label for="changeaboutme"></label>
-                                <input type="text" id="changeaboutme" name="changeaboutme" value="@Model.profile.aboutme" />
+                                <input type="text" id="changeaboutme" class="aboutme_desc" name="changeaboutme" value="@Model.profile.aboutme" /><br />
                                 <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                                 <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="7" />
                                 <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                                <button type="submit"><p>Change</p></button>
+                                <button type="submit" class="aboutme_edit"><p>Change</p></button>
                             </form>
                         </div>
                         <div class="profile_posts">
+                            <h2 style="font-family: 'raleway'; letter-spacing: 1px;">Posts:</h2>
                             <form method="post" action="/Home/LogIn" role="form">
                                 <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                                 <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="8" />
                                 <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
                                 <button type="submit"><p>Create Post!</p></button>
                             </form>
+                            <div style="clear: both; margin-bottom: 20px;"></div>
                             @foreach (MMIv3.Models.Posty posty in Model.profile.posty)
                             {
-                            <div class="profile_post">
-                                <p>@posty.content</p>
-
-                            </div>
-
-
+                                <div class="profile_post">
+                                    <p>@posty.content</p>
+                                </div><br />
                             }
-
                         </div>
                     }
-
                     else
                     {
-                        <div class="middlemenu_baner">
-                            <img src="~/images/koya.svg" style="float: left; width:7vw; height: 7vh;" />
-                            <input type="text" placeholder="Search tags in profile" style="float: left;" />
-                        </div>
-                        <div class="profile_break" style="width: 100%; height: 40px; background-color: #4B4E6D; clear: both;"></div>
                         <div class="profile_info">
                             <div class="profileicon_elipsa">
                                 <img src="@Model.profile.Friend.avatar" style="width: 100%; height: 100%; border-radius: 50%;" /><br />
@@ -119,74 +118,105 @@
                                     <p>@posty.content</p>
 
                                 </div>
-
-
                             }
                         </div>
                     }
                 }
                 else if (Model.action == 10)
-                {@*Tu dajesz ustawienia*@
-
-
-
+                {
+                    <div class="settings">
+                        <div class="casual_settings">
+                            <form action="/Home/LogIn" role="form" method="post">
+                                <h1 style="text-align: center">Change your data</h1>
+                                <label for="email"></label><input value="" name="email" id="email" class="change_data_input" placeholder="Email" />
+                                <label for="username"></label><input value="" name="username" id="username" class="change_data_input" placeholder="Username" />
+                                <label for="password"></label><input value="" name="username" id="username" class="change_data_input" placeholder="Password" />
+                                <div style="clear: both;"></div>
+                                <button type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="break_panel"></div>
+                        <div class="settings_image_upload">
+                            <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
+                                <fieldset>
+                                    <h1 style="text-align: center;">Upload image</h1>
+                                    <label for="Image">Image</label>
+                                    <input type="file" name="Image" />
+                                    <br />
+                                    <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="1" />
+                                    <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                                    <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.url" />
+                                    <input type="submit" value="Upload" class="avatar_button"/>
+                                    <input type="submit" value="Confirm" class="avatar_button"/>
+                                </fieldset>
+                            </form>
+                            <h1>Uploaded Image @Model.url</h1>
+                            @if (imagePath != "")
+                            {
+                                <div class="result">
+                                    <img src="@imagePath" alt="image" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="settings_footer">
+                        <div class="settings_icons">
+                            <a href="https://www.facebook.com/" class="settings_icon facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://twitter.com/BGT" class="settings_icon twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="settings_icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://pl.wikipedia.org/wiki/Google%2B" class="settings_icon google-plus"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="https://www.youtube.com/watch?v=vfIWZHQdQ0Y" class="settings_icon youtube"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://open.spotify.com/playlist/2as1OeKojKlt0ERwvSMQQh?si=23a2be320cdb4ac6" class="settings_icon spotify"><i class="fa-brands fa-spotify"></i></a>
+                        </div>
+                    </div>
                 }
                 else if (Model.action == 11)
-                { 
-            <form method="post" action="/Home/LogIn" role="form">
-                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
-                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="12" />
-                <label for="grname">Group Name</label><input type="text" name="grname" id="grname" />
-                <label for="grabout">Group About</label><input type="text" name="grabout" id="grabout" />
-                <button type="submit"><p>Create Group</p></button>
-
-            </form>
-                
-                
+                {
+                    <form method="post" action="/Home/LogIn" role="form" class="group_chat_form">
+                        <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                        <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="12" />
+                        <label for="grname" class="group_name_label">Group Name</label><input type="text" name="grname" id="grname" /><br />
+                        <label for="grabout">Group About</label><input type="text" name="grabout" id="grabout" /><br />
+                        <button type="submit"><p>Create Group</p></button>
+                    </form>
                 }
-
-
-
-
                 else if (Model.action == 8)
                 {
-            <form method = "post" action = "/Home/LogIn" role = "form" >
-                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
-                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="9" />
-                <label for="postcontent"></label><input id="postcontent" name="postcontent" type="text" />
-                <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                <button type="submit"><p>Publish</p></button></form>
-
-
-
+                    <form method="post" action="/Home/LogIn" role="form" class="form_add_post">
+                        <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                        <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="9" />
+                        <label for="postcontent"></label><input id="postcontent" name="postcontent" type="text" class="post_add_content" placeholder="Tell us about something..." /><br />
+                        <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
+                        <button type="submit" class="post_publish_content"><p>Publish</p></button>
+                    </form>
                 }
                 else if (Model.action == 5 || Model.action == 6)
                 {
-                <div class="namee"><p>@Model.focusedfriend.Name</p></div>
-                <div class="messeges">
-                    @foreach (MMIv3.Models.Message message in Model.lastfive)
-                    {
-                        <div class="@message.wsend">
-                            <p>@message.content</p>
+                    <div class="message_block">
+                        <div class="message_user_name"><p>Conversation with @Model.focusedfriend.Name</p></div>
+                        <div class="messeges">
+                            @foreach (MMIv3.Models.Message message in Model.lastfive)
+                            {
+                                <div class="@message.wsend">
+                                    <p>@message.content</p>
+                                </div>
+                                <div style="clear: both"></div>
+                            }
+                            <div class="message_profile_break"></div>
+                            <form action="/Home/LogIn" method="post" role="form">
+                                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="6" />
+                                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                                <label for="sendmessage"></label> <input type="text" class="message_content" style="float: left;" name="sendmessage" id="sendmessage" placeholder="@Model.sendmessage" />
+                                <label for="focusedfriendid"></label> <input type="hidden" id="focusedfriendid" name="focusedfriendid" value="@Model.focusedfriendid" />
+                                <input type="submit" value="Send" class="send_message" id="btn" />
+                            </form>
                         </div>
-                    }
-                    <form action="/Home/LogIn" method="post" role="form">
-                        <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="6" />
-                        <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
-                        <label for="sendmessage"></label> <input type="text" name="sendmessage" id="sendmessage" placeholder="@Model.sendmessage" />
-                        <label for="focusedfriendid"></label> <input type="hidden" id="focusedfriendid" name="focusedfriendid" value="@Model.focusedfriendid" />
-                        <input type="submit" value="Send" id="btn" />
-                    </form>
-
-
-                </div>
-
-
+                    </div>
                 }
             </div>
                         <div class="profile_page_rightmenu">
                             <div class="profile_friends_list" id="profile_friends_list">
-                                <p style="float: left;">Friends list:</p>
+                                <p style="float: left; font-family: 'raleway'; letter-spacing: 1px;">Friends list:</p>
                                 <a class="page_link" style="float: right; color: #90EE90; text-decoration: none;"><div class="div_button" onclick="Show_Input();"><i class="fa-solid fa-user-plus form_add_friend"></i><p class="form_add_friend">Add new</p></div></a>
                                 <br style="clear: both;" />
                                 <div class="profile_sendreq" id="profile_sendreq">
@@ -199,27 +229,25 @@
                                 </div>
                                 @foreach (MMIv3.Models.Friend friend in Model.Friendlist)
                                 {
-                                    <div class="friend">
-
-                                        <form action="/Home/LogIn" role="form" method="post">
-                                            <label for="action"></label><input type="hidden" id="action" name="action" value="5" />
-                                            <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
-                                            <label for="focusedfriendid"></label><input type="hidden" value="@friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                                            <div class="elipsa"><button type="submit"><img src="@friend.avatar" /></button> </div>
-                                        </form>
-
-                                        <form action="/Home/LogIn" role="form" method="post">
-                                            <label for="action"></label><input type="hidden" id="action" name="action" value="4" />
-                                            <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
-                                            <label for="focusedfriendid"></label><input type="hidden" value="@friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                                            <button type="submit" class="name"><p>@friend.Name.ToString()</p></button>
-                                        </form>
-                                    </div>
+                                <div class="friend">
+                                    <form action="/Home/LogIn" role="form" method="post" class="friend_form1">
+                                        <label for="action"></label><input type="hidden" id="action" name="action" value="5" />
+                                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                                        <label for="focusedfriendid"></label><input type="hidden" value="@friend.Id" name="focusedfriendid" id="focusedfriendid" />
+                                        <div class="elipsa"><button type="submit" class="elipsa_no_border"><img src="@friend.avatar" class="elipsa_no_border" /></button></div>
+                                    </form>
+                                    <form action="/Home/LogIn" role="form" method="post" class="friend_form2">
+                                        <label for="action"></label><input type="hidden" id="action" name="action" value="4" />
+                                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                                        <label for="focusedfriendid"></label><input type="hidden" value="@friend.Id" name="focusedfriendid" id="focusedfriendid" />
+                                        <button type="submit" class="name"><p>@friend.Name.ToString()</p></button>
+                                    </form>
+                                </div>
                                 }
                             </div>
                             <div class="break_panel"></div>
                             <div class="profile_friends_requests" id="profile_friends_requests">
-                                <p>Requests:</p>
+                                <p style="font-family: 'raleway'; letter-spacing: 1px;">Requests:</p>
                                 @foreach (MMIv3.Models.Friend friend1 in Model.WaitingReqlist)
                                 {
                                     <div class="friend_request">
@@ -235,27 +263,15 @@
                             </div>
                             <div class="break_panel"></div>
                             <div class="profile_user_controls">
-                                <div class="Thatsu">
-
-                                    <form action="/Home/LogIn" role="form" method="post">
-                                        <label for="action"></label><input type="hidden" id="action" name="action" value="4" />
-                                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
-                                        <label for="focusedfriendid"></label><input type="hidden" value="@Model.id" name="focusedfriendid" id="focusedfriendid" />
-                                        <button type="submit">Your profile</button>
-                                    </form>
-                                </div>
                                 <form action="/Home/LogIn" role="form" method="post">
                                     <label for="action"></label><input type="hidden" id="action" name="action" value="10" />
                                     <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
                                     <button type="submit">Settings</button>
-
-
-                                </form>                               @*@<span class="span_user_control span_settings"><a href="/Home/Settings"><i class="fa-solid fa-gear"></i>Settings</a></span>*@
+                                </form>
+                                <span class="span_user_control span_settings"><i class="fa-solid fa-gear"></i>Settings</span>
                                 <span class="span_user_control span_logout"><a href="/Home/Index" style="color: #E99595;"><i class="fa-solid fa-right-from-bracket" style="color: #E99595;"></i>Log out</a></span>
                             </div>
                         </div>
-
-
                     </div>
 </body>
 <script>

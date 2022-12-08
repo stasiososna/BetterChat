@@ -45,12 +45,12 @@ namespace MMIv3.Models
             username = user.username;
             password = user.password;
             id = id2;
-            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
 
         }
 
         public UserAction() {
-            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
         }
         public void getlastthree() { 
             lastthree = new List<Friend>();
