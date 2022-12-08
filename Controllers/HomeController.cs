@@ -81,13 +81,22 @@ namespace MMIv3.Controllers
 
 
                 }
-                if (userAction.action == 11)
-                { 
-                
-                
+                if (userAction.action == 12)
+                {   
+                    Increment increment = new Increment();
+                    var result = increment.oblicz("groups");
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandType=CommandType.Text;
+                    cmd.CommandText = "Insert into groups(id,name,about,url) values('"+result+"','"+userAction.grname+','+userAction.grabout+",'"+userAction.groupimagepath+"');";
+                    cmd.ExecuteNonQuery();
                 
                 
                 }
+
+
+
+
                 if (userAction.action == 4 || userAction.action == 7 || userAction.action == 9 || userAction.action == 8)
                 {
                     if (userAction.action == 9)

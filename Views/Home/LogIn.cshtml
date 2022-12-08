@@ -40,7 +40,7 @@
                             <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
                             <label for="focusedfriendid"></label><input type="hidden" value="@friend2.Id" name="focusedfriendid" id="focusedfriendid" />
                             <div class="elipsa"><button type="submit"><img src="@friend2.avatar" /></button> </div></form>
-                            }
+                    }
                     </div>
                 <div class="Groupscreate">
                     <form action="/Home/LogIn" role="form" method="post">
@@ -131,6 +131,23 @@
 
 
                 }
+                else if (Model.action == 11)
+                { 
+            <form method="post" action="/Home/LogIn" role="form">
+                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="12" />
+                <label for="grname">Group Name</label><input type="text" name="grname" id="grname" />
+                <label for="grabout">Group About</label><input type="text" name="grabout" id="grabout" />
+                <button type="submit"><p>Create Group</p></button>
+
+            </form>
+                
+                
+                }
+
+
+
+
                 else if (Model.action == 8)
                 {
             <form method = "post" action = "/Home/LogIn" role = "form" >
