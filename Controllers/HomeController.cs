@@ -13,7 +13,7 @@ namespace MMIv3.Controllers
     {
         public int result;
         public int islogged = 0;
-        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB2;Integrated Security=True");
         public ActionResult Index()
         {
             var user = new User();
@@ -81,7 +81,7 @@ namespace MMIv3.Controllers
 
 
                 }
-                if (userAction.action == 4 || userAction.action==8 || userAction.action==7)
+                if (userAction.action == 4 ||  userAction.action==7|| userAction.action==9)
                 {
                     if (userAction.action == 4)
                     {
@@ -108,10 +108,16 @@ namespace MMIv3.Controllers
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    else 
-                    { 
-                    
-                    
+                    else if(userAction.action==9)
+                    {
+                        Increment increment = new Increment();
+                        int result = increment.oblicz("posts");
+                        SqlCommand cmd = new SqlCommand();
+                        conn.Open();
+                        cmd.CommandText = "insert into posts(id,adderid,content) values('" + result + "','" + userAction.id + "','" + userAction.postcontent + "');";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = conn;
+                        cmd.ExecuteNonQuery();
                     
                     
                     
