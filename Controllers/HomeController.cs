@@ -81,7 +81,14 @@ namespace MMIv3.Controllers
 
 
                 }
-                if (userAction.action == 4 ||  userAction.action==7|| userAction.action==9 || userAction.action == 8)
+                if (userAction.action == 11)
+                { 
+                
+                
+                
+                
+                }
+                if (userAction.action == 4 || userAction.action == 7 || userAction.action == 9 || userAction.action == 8)
                 {
                     if (userAction.action == 9)
                     {
@@ -97,7 +104,7 @@ namespace MMIv3.Controllers
 
 
                     }
-                    if (userAction.action == 4 || userAction.action==9|| userAction.action==8)
+                    if (userAction.action == 4 || userAction.action == 9 || userAction.action == 8)
                     {
                         if (userAction.focusedfriendid == userAction.id)
                         {
@@ -125,7 +132,7 @@ namespace MMIv3.Controllers
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    
+
 
 
                     userAction.setfriend();
@@ -155,12 +162,17 @@ namespace MMIv3.Controllers
 
 
                 }
+
                 conn.Close();
                 userAction.GetFriends();
                 userAction.GetRequests();
                 userAction.SetProfPic();
                 userAction.getlastthree();
                 return View(userAction);
+            }
+            else if (userAction.action == 10)
+            { 
+            return View(userAction);
             }
             else
             {

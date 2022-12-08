@@ -42,11 +42,18 @@
                             <div class="elipsa"><button type="submit"><img src="@friend2.avatar" /></button> </div></form>
                             }
                     </div>
+                <div class="Groupscreate">
+                    <form action="/Home/LogIn" role="form" method="post">
+                        <label for="action"></label><input type="hidden" id="action" name="action" value="11" />
+                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                        <button type="submit"><p>+</p></button>
+                    </form>
+                </div>
             </div>
             <div class="profile_page_middlemenu">
-                @if (Model.action == 4 || Model.action==9)
+                @if (Model.action == 4 || Model.action == 9)
                 {
-                    if (Model.id == Model.profile.ifmeid )
+                    if (Model.id == Model.profile.ifmeid)
                     {
                         <div class="middlemenu_baner">
                             <img src="~/images/koya.svg" style="float: left; width:7vw; height: 7vh;" />
@@ -77,13 +84,13 @@
                                 <button type="submit"><p>Create Post!</p></button>
                             </form>
                             @foreach (MMIv3.Models.Posty posty in Model.profile.posty)
-                            { 
+                            {
                             <div class="profile_post">
                                 <p>@posty.content</p>
 
                             </div>
-                            
-                            
+
+
                             }
 
                         </div>
@@ -118,16 +125,20 @@
                         </div>
                     }
                 }
+                else if (Model.action == 10)
+                {@*Tu dajesz ustawienia*@
+
+
+
+                }
                 else if (Model.action == 8)
                 {
-            <form method="post" action="/Home/LogIn" role="form">
+            <form method = "post" action = "/Home/LogIn" role = "form" >
                 <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                 <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="9" />
                 <label for="postcontent"></label><input id="postcontent" name="postcontent" type="text" />
                 <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                <button type="submit"><p>Publish</p></button>
-
-            </form>
+                <button type="submit"><p>Publish</p></button></form>
 
 
 
@@ -216,7 +227,13 @@
                                         <button type="submit">Your profile</button>
                                     </form>
                                 </div>
-                                <span class="span_user_control span_settings"><a href="/Home/Settings"><i class="fa-solid fa-gear"></i>Settings</a></span>
+                                <form action="/Home/LogIn" role="form" method="post">
+                                    <label for="action"></label><input type="hidden" id="action" name="action" value="10" />
+                                    <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                                    <button type="submit">Settings</button>
+
+
+                                </form>                               @*@<span class="span_user_control span_settings"><a href="/Home/Settings"><i class="fa-solid fa-gear"></i>Settings</a></span>*@
                                 <span class="span_user_control span_logout"><a href="/Home/Index" style="color: #E99595;"><i class="fa-solid fa-right-from-bracket" style="color: #E99595;"></i>Log out</a></span>
                             </div>
                         </div>
