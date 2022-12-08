@@ -31,6 +31,11 @@ namespace MMIv3.Models
         public Profile profile { get; set; }
         public string changeaboutme { get; set; }
         public string postcontent { get; set; }
+        public List<Grupa> groups { get; set; }
+        public string groupimagepath { get; set; }
+        public string grname { get; set; }
+        public string grabout { get; set; }
+
 
 
         public UserAction(User user, int action2, int id2)
@@ -40,12 +45,12 @@ namespace MMIv3.Models
             username = user.username;
             password = user.password;
             id = id2;
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
 
         }
 
         public UserAction() {
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
         }
         public void getlastthree() { 
             lastthree = new List<Friend>();
@@ -104,6 +109,26 @@ namespace MMIv3.Models
 
 
 
+        }
+
+        public void getgroups() {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "select id from groups where memberid=" + id;
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                groups.Add(new Grupa(Int32.Parse(row[0].ToString()),conn));
+            
+            
+            }
+        
+        
+        
+        
         }
         public void GetFriends()
         {
@@ -263,6 +288,7 @@ namespace MMIv3.Models
 
             
         }
+        
             public void SetProfPic()
         {
             

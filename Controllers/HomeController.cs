@@ -13,7 +13,7 @@ namespace MMIv3.Controllers
     {
         public int result;
         public int islogged = 0;
-        static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection(@"Data Source=ST14\SQLEXPRESS;Initial Catalog=mmi1;Integrated Security=True");
         public ActionResult Index()
         {
             var user = new User();
@@ -81,20 +81,53 @@ namespace MMIv3.Controllers
 
 
                 }
-                if (userAction.action == 4 ||  userAction.action==7|| userAction.action==9)
+                if (userAction.action == 12)
+                {   
+                    Increment increment = new Increment();
+                    var result = increment.oblicz("groups");
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandType=CommandType.Text;
+                    cmd.CommandText = "Insert into groups(id,name,about,url) values('"+result+"','"+userAction.grname+','+userAction.grabout+",'"+userAction.groupimagepath+"');";
+                    cmd.ExecuteNonQuery();
+                
+                
+                }
+
+
+
+
+                if (userAction.action == 4 || userAction.action == 7 || userAction.action == 9 || userAction.action == 8)
                 {
-                    if (userAction.action == 4)
+                    if (userAction.action == 9)
+                    {
+                        Increment increment = new Increment();
+                        int result = increment.oblicz("posts");
+                        SqlCommand cmd = new SqlCommand();
+                        conn.Open();
+                        cmd.CommandText = "insert into posts(id,adderid,content) values('" + result + "','" + userAction.id + "','" + userAction.postcontent + "');";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = conn;
+                        cmd.ExecuteNonQuery();
+
+
+
+                    }
+                    if (userAction.action == 4 || userAction.action == 9 || userAction.action == 8)
                     {
                         if (userAction.focusedfriendid == userAction.id)
                         {
                             userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
                             userAction.profile = new Profile(userAction.focusedfriend, userAction.id, conn, userAction.username);
+                            userAction.profile.getposts(conn);
+
+
                         }
                         else
                         {
                             userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
                             userAction.profile = new Profile(userAction.focusedfriend, conn, userAction.focusedfriend.Name);
-
+                            userAction.profile.getposts(conn);
 
                         }
                     }
@@ -108,20 +141,7 @@ namespace MMIv3.Controllers
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    else if(userAction.action==9)
-                    {
-                        Increment increment = new Increment();
-                        int result = increment.oblicz("posts");
-                        SqlCommand cmd = new SqlCommand();
-                        conn.Open();
-                        cmd.CommandText = "insert into posts(id,adderid,content) values('" + result + "','" + userAction.id + "','" + userAction.postcontent + "');";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Connection = conn;
-                        cmd.ExecuteNonQuery();
-                    
-                    
-                    
-                    }
+
 
 
                     userAction.setfriend();
@@ -151,12 +171,17 @@ namespace MMIv3.Controllers
 
 
                 }
+
                 conn.Close();
                 userAction.GetFriends();
                 userAction.GetRequests();
                 userAction.SetProfPic();
                 userAction.getlastthree();
                 return View(userAction);
+            }
+            else if (userAction.action == 10)
+            { 
+            return View(userAction);
             }
             else
             {
