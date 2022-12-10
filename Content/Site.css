@@ -967,6 +967,10 @@ input {
         --p: 100%;
     }
 
+.group_image1 {
+    text-align: center;
+}
+
 .settings_footer {
     width: 80vw;
     height: 14.5vh;

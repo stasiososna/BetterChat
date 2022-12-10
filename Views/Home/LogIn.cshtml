@@ -212,25 +212,23 @@
                 }
                 else if (Model.action == 12 || Model.action==15)
                 {
-                    <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
+                    <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data" class="group_image1">
                         <fieldset>
                             <h1 style="text-align: center;">Upload image</h1>
-                            <label for="Image">Image</label>
                             <input type="file" name="Image" />
                             <br />
                             <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="15" />
                             <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                             <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
-                            <input type="submit" value="Upload" />
-
+                            <input type="submit" value="Upload" class="image_upload_button" />
                         </fieldset>
                     </form>
-                    <form action="/Home/LogIn" role="form" method="post">
+                    <form action="/Home/LogIn" role="form" method="post" class="group_image1">
                         <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="16" />
                         <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                         <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
                         <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.groupimagepath" />
-                        <button type="submit"></button>
+                        <button type="submit" class="image_upload_button">Save</button>
                     </form>
 
                 }
