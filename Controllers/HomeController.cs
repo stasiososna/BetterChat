@@ -32,20 +32,42 @@ namespace MMIv3.Controllers
         {
             if (userAction.id != 0)
             {
-                userAction.SetUser(userAction.id);
-                conn.Close();
-                userAction.GetFriends();
-                userAction.GetRequests();
-                userAction.SetProfPic();
+                if (userAction.action != 1 && userAction.action!=14)
+                {
+                    userAction.SetUser(userAction.id);
+                    conn.Close();
+                    userAction.GetFriends();
+                    userAction.GetRequests();
+                    userAction.SetProfPic();
+
+                }
+                
+                
                 if (userAction.action == 1 && userAction.url != "null")
                 {
-
+                    
                     SqlCommand cmd = new SqlCommand();
+                    conn.Open();
+                    cmd.Connection = conn;
                     cmd.CommandType = System.Data.CommandType.Text;
-                    result = getid(userAction.username, userAction.password, conn);
-                    cmd.CommandText = "update User1 set avatar = " + userAction.url + " where id = " + userAction.id;
+                    
+                    cmd.CommandText = "update User1 set avatar = '" + userAction.url + "' where id = '" + userAction.id+"'";
                     cmd.ExecuteNonQuery();
                     conn.Close();
+
+                }
+                if (userAction.action == 14){
+                    SqlCommand cmd = new SqlCommand();
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    cmd.CommandText = "update User1 set username = '" + userAction.username + "',password = '"+userAction.password+"', email = '"+userAction.email+"' where id = '" + userAction.id + "'";
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+
+
 
                 }
 
@@ -82,16 +104,30 @@ namespace MMIv3.Controllers
 
                 }
                 if (userAction.action == 12)
-                {   
+                {
+                    conn.Open();
                     Increment increment = new Increment();
                     var result = increment.oblicz("groups");
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
                     cmd.CommandType=CommandType.Text;
-                    cmd.CommandText = "Insert into groups(id,name,about,url) values('"+result+"','"+userAction.grname+','+userAction.grabout+",'"+userAction.groupimagepath+"');";
+                    cmd.CommandText = "Insert into groups(id,name,about,ownerid,url) values('"+result+"','"+userAction.grname+"','"+userAction.grabout+"','"+userAction.id+"','basic.jpg');";
                     cmd.ExecuteNonQuery();
+                    userAction.focusedgroupid = result;
+                    conn.Close();
                 
-                
+                }
+                if (userAction.action == 16)
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    cmd.CommandText = "update groups set url = '" + userAction.url + "' where id = '" + userAction.focusedgroupid + "'";
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
                 }
 
 
@@ -131,7 +167,7 @@ namespace MMIv3.Controllers
 
                         }
                     }
-                    else if (userAction.action == 7)
+                    if (userAction.action == 7)
                     {
                         SqlCommand cmd = new SqlCommand();
                         conn.Open();
@@ -140,6 +176,21 @@ namespace MMIv3.Controllers
                         cmd.CommandType = CommandType.Text;
                         cmd.ExecuteNonQuery();
                         conn.Close();
+                        if (userAction.focusedfriendid == userAction.id)
+                        {
+                            userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
+                            userAction.profile = new Profile(userAction.focusedfriend, userAction.id, conn, userAction.username);
+                            userAction.profile.getposts(conn);
+
+
+                        }
+                        else
+                        {
+                            userAction.focusedfriend = new Friend(userAction.focusedfriendid, conn);
+                            userAction.profile = new Profile(userAction.focusedfriend, conn, userAction.focusedfriend.Name);
+                            userAction.profile.getposts(conn);
+
+                        }
                     }
 
 
@@ -173,6 +224,7 @@ namespace MMIv3.Controllers
                 }
 
                 conn.Close();
+                userAction.getgroups();
                 userAction.GetFriends();
                 userAction.GetRequests();
                 userAction.SetProfPic();
@@ -200,6 +252,7 @@ namespace MMIv3.Controllers
             userAction.GetFriends();
             userAction.GetRequests();
             userAction.getlastthree();
+            userAction.getgroups();
             userAction.SetProfPic();
 
             if (result > 0)

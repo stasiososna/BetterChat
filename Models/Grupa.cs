@@ -14,6 +14,7 @@ namespace MMIv3.Models
         public string Name { get; set; }
         public string about { get; set; }
         public string url { get; set; }
+
         public Grupa(int id, SqlConnection conn) {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -27,6 +28,7 @@ namespace MMIv3.Models
                 Name = row[0].ToString();
                 about = row[1].ToString();
                 url = row[2].ToString();
+
             
             
             }

@@ -8,17 +8,35 @@
 
     if (IsPost)
     {
-        photo = WebImage.GetImageFromRequest();
-        if (photo != null)
+        if (Model.action != 12 && Model.action != 15 && Model.action != 16)
         {
-            newFileName = Guid.NewGuid().ToString() + "_" +
-                Path.GetFileName(photo.FileName);
-            imagePath = @"images\" + newFileName;
+            photo = WebImage.GetImageFromRequest();
+            if (photo != null)
+            {
+                newFileName = Guid.NewGuid().ToString() + "_" +
+                    Path.GetFileName(photo.FileName);
+                imagePath = @"images\" + newFileName;
 
-            photo.Save(@"~\" + imagePath);
-            action = 1;
-            Model.action = action;
-            Model.url = imagePath;
+                photo.Save(@"~\" + imagePath);
+                Model.url = newFileName;
+
+
+            }
+        }
+        else
+        {
+            photo = WebImage.GetImageFromRequest();
+            if (photo != null)
+            {
+                newFileName = Guid.NewGuid().ToString() + "_" +
+                    Path.GetFileName(photo.FileName);
+                imagePath = @"images\" + newFileName;
+
+                photo.Save(@"~\" + imagePath);
+                Model.groupimagepath = newFileName;
+
+
+            }
 
         }
     }
@@ -26,6 +44,7 @@
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
 </head>
 <body>
     <div class="profile_page_mycontainer">
@@ -39,6 +58,17 @@
                             <label for="focusedfriendid"></label><input type="hidden" value="@friend2.Id" name="focusedfriendid" id="focusedfriendid" />
                             <div class="elipsa"><button type="submit" class="elipsa_no_border"><img src="@friend2.avatar" class="elipsa_no_border"/></button></div>
                         </form>
+                    }
+                    @foreach (MMIv3.Models.Grupa grupa in Model.groups)
+                    { 
+                    <form action="/Home/LogIn" role="form" method="post">
+                        <label for="action"></label><input type="hidden" id="action" name="action" value="17" />
+                        <label for="id"></label><input type="hidden" value="@Model.id" name="id" id="id" />
+                        <label for="focusedgroupid"></label><input type="hidden" value="@grupa.Id" name="focusedgroupid" id="focusedgroupid" />
+                        <div class="elipsa"><button type="submit" class="elipsa_no_border"><img src="@grupa.url" class="elipsa_no_border"></button></div>
+                    </form>
+                    
+                    
                     }
                     </div>
                 <div class="Groupscreate">
@@ -63,7 +93,7 @@
                     </div>
                 </div>
                 <div class="profile_break" style="width: 100%; height: 3vh; background-color: #4B4E6D; clear: both;"></div>
-                @if (Model.action == 4 || Model.action == 9)
+                @if (Model.action == 4 || Model.action == 9 || Model.action == 7)
                 {
                     if (Model.id == Model.profile.ifmeid)
                     {
@@ -80,7 +110,7 @@
                                 <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                                 <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="7" />
                                 <label for="focusedfriendid"></label><input type="hidden" value="@Model.profile.Friend.Id" name="focusedfriendid" id="focusedfriendid" />
-                                <button type="submit" class="aboutme_edit"><p>Change</p></button>
+                                <button type="submit" class="aboutme_edit">Change</button>
                             </form>
                         </div>
                         <div class="profile_posts">
@@ -122,7 +152,7 @@
                         </div>
                     }
                 }
-                else if (Model.action == 10)
+                else if (Model.action == 10 || Model.action == 1 || Model.action == 13 || Model.action == 14)
                 {
                     <div class="settings">
                         <div class="casual_settings">
@@ -130,33 +160,31 @@
                                 <h1 style="text-align: center">Change your data</h1>
                                 <label for="email"></label><input value="" name="email" id="email" class="change_data_input" placeholder="Email" />
                                 <label for="username"></label><input value="" name="username" id="username" class="change_data_input" placeholder="Username" />
-                                <label for="password"></label><input value="" name="username" id="username" class="change_data_input" placeholder="Password" />
+                                <label for="password"></label><input value="" name="password" id="password" class="change_data_input" placeholder="Password" />
+                                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="14" />
                                 <div style="clear: both;"></div>
                                 <button type="submit">Save</button>
                             </form>
                         </div>
                         <div class="break_panel"></div>
                         <div class="settings_image_upload">
+                            <h1 style="text-align: center;">Upload image</h1>
                             <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
                                 <fieldset>
-                                    <h1 style="text-align: center;">Upload image</h1>
-                                    <label for="Image">Image</label>
                                     <input type="file" name="Image" />
                                     <br />
-                                    <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="1" />
+                                    <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="13" />
                                     <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
-                                    <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.url" />
-                                    <input type="submit" value="Upload" class="avatar_button"/>
-                                    <input type="submit" value="Confirm" class="avatar_button"/>
+                                    <input type="submit" value="Upload" class="image_upload_button"/>
                                 </fieldset>
                             </form>
-                            <h1>Uploaded Image @Model.url</h1>
-                            @if (imagePath != "")
-                            {
-                                <div class="result">
-                                    <img src="@imagePath" alt="image" />
-                                </div>
-                            }
+                            <form action="/Home/LogIn" role="form" method="post">
+                                <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="1" />
+                                <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                                <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.url" />
+                                <button type="submit" class="image_upload_button">Save</button>
+                            </form>
                         </div>
                     </div>
                     <div class="settings_footer">
@@ -177,8 +205,34 @@
                         <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="12" />
                         <label for="grname" class="group_name_label">Group Name</label><input type="text" name="grname" id="grname" /><br />
                         <label for="grabout">Group About</label><input type="text" name="grabout" id="grabout" /><br />
+
+
                         <button type="submit"><p>Create Group</p></button>
                     </form>
+                }
+                else if (Model.action == 12 || Model.action==15)
+                {
+                    <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <h1 style="text-align: center;">Upload image</h1>
+                            <label for="Image">Image</label>
+                            <input type="file" name="Image" />
+                            <br />
+                            <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="15" />
+                            <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                            <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
+                            <input type="submit" value="Upload" />
+
+                        </fieldset>
+                    </form>
+                    <form action="/Home/LogIn" role="form" method="post">
+                        <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="16" />
+                        <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
+                        <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
+                        <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.groupimagepath" />
+                        <button type="submit"></button>
+                    </form>
+
                 }
                 else if (Model.action == 8)
                 {
@@ -202,7 +256,7 @@
                                 </div>
                                 <div style="clear: both"></div>
                             }
-                            <div class="message_profile_break"></div>
+                            <div class="break_panel"></div>
                             <form action="/Home/LogIn" method="post" role="form">
                                 <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="6" />
                                 <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
@@ -276,6 +330,7 @@
 </body>
 <script>
     let x = 0;
+    let n = 0;
     function Show_Input() {
         if (x == 0) {
             document.getElementById("profile_sendreq").style = 'display: block';

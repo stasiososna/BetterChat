@@ -35,6 +35,10 @@ namespace MMIv3.Models
         public string groupimagepath { get; set; }
         public string grname { get; set; }
         public string grabout { get; set; }
+        public int ifmyprofile { get; set; }
+        public string email { get; set; }
+        public bool disablesmt { get; set; }
+        public int focusedgroupid { get; set; }
 
 
 
@@ -99,7 +103,7 @@ namespace MMIv3.Models
                 }
                 else
                 {
-                    lastfive.Add(new Message("To początek konwersacji! Pamiętaj aby być miły!"));
+                    lastfive.Add(new Message("This is the beginning of conversation. Remember to be nice!"));
                 }
             
             }
@@ -110,11 +114,13 @@ namespace MMIv3.Models
 
 
         }
+        
 
         public void getgroups() {
+            groups = new List<Grupa>();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select id from groups where memberid=" + id;
+            cmd.CommandText = "select id from groups where ownerid=" + id;
             cmd.CommandType = CommandType.Text;
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
