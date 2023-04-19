@@ -16,6 +16,7 @@ namespace MMIv3.Models
         public string url { get; set; }
 
         public Grupa(int id, SqlConnection conn) {
+            Id = id;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "select name,about,url from groups where id =" + id;
@@ -27,7 +28,7 @@ namespace MMIv3.Models
             {
                 Name = row[0].ToString();
                 about = row[1].ToString();
-                url = row[2].ToString();
+                url =row[2].ToString();
 
             
             

@@ -39,6 +39,7 @@ namespace MMIv3.Models
         public string email { get; set; }
         public bool disablesmt { get; set; }
         public int focusedgroupid { get; set; }
+        public Grupa focusedgroup { get; set; }
 
 
 
@@ -49,12 +50,12 @@ namespace MMIv3.Models
             username = user.username;
             password = user.password;
             id = id2;
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB3;Integrated Security=True");
 
         }
 
         public UserAction() {
-            conn = new SqlConnection(@"Data Source=DESKTOP-07OANPP;Initial Catalog=mmi1;Integrated Security=True");
+            conn = new SqlConnection(@"Data Source=DESKTOP-HLJB7UO\SQLEXPRESS01;Initial Catalog=DDB3;Integrated Security=True");
         }
         public void getlastthree() { 
             lastthree = new List<Friend>();

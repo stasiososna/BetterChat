@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Controllers",
-    "\\Views",
-    "\\Views\\Home"
+    ""
   ],
-  "SelectedNode": "\\Controllers\\HomeController.cs",
+  "SelectedNode": "\\MMIv3.sln",
   "PreviewInSolutionExplorer": false
 }

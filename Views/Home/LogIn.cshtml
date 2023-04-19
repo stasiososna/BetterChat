@@ -150,10 +150,19 @@
                                 </div>
                             }
                         </div>
-                    }
+                                }
+                            }
+
+                            else if (Model.action == 17)
+                            { 
+                                <h1>@Model.focusedgroup.Name</h1>
+                                <h2>@Model.focusedgroup.about</h2>
+                
+                
+                
                 }
-                else if (Model.action == 10 || Model.action == 1 || Model.action == 13 || Model.action == 14)
-                {
+                            else if (Model.action == 10 || Model.action == 1 || Model.action == 13 || Model.action == 14)
+                            {
                     <div class="settings">
                         <div class="casual_settings">
                             <form action="/Home/LogIn" role="form" method="post">
@@ -215,12 +224,14 @@
                     <form action="/Home/LogIn" role="form" method="post" enctype="multipart/form-data" class="group_image1">
                         <fieldset>
                             <h1 style="text-align: center;">Upload image</h1>
+                            <label for="Image">Image</label>
                             <input type="file" name="Image" />
                             <br />
                             <label class="col-form-label" for="action"></label><input id="action" name="action" type="hidden" class="form-control" value="15" />
                             <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                             <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
                             <input type="submit" value="Upload" class="image_upload_button" />
+
                         </fieldset>
                     </form>
                     <form action="/Home/LogIn" role="form" method="post" class="group_image1">
@@ -228,7 +239,7 @@
                         <label class="col-form-label" for="id"></label><input id="id" name="id" type="hidden" class="form-control" value="@Model.id" />
                         <label for="focusedgroupid"></label><input name="focusedgroupid" id="focusedgroupid" type="hidden" value="@Model.focusedgroupid" />
                         <label class="col-form-label" for="url"></label><input id="url" name="url" type="hidden" class="form-control" value="@Model.groupimagepath" />
-                        <button type="submit" class="image_upload_button">Save</button>
+                        <button type="submit"class="image_upload_button">Save</button>
                     </form>
 
                 }
